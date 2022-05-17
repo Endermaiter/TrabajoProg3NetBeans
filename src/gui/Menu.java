@@ -2,15 +2,23 @@ package gui;
 
 import clases.ArrayMethods;
 import clases.Cliente;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.util.ArrayList;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 public class Menu extends javax.swing.JFrame {
     
     ArrayList<Cliente>listadoReservas = new ArrayList<>();
 
+    ImagenFondo imagen = new ImagenFondo();
+    
     public Menu() {
         super("RESERVAS DEL HOTEL");
+        this.setContentPane(imagen);
         initComponents();
     }
 
@@ -24,10 +32,15 @@ public class Menu extends javax.swing.JFrame {
         eliminarReservaButton = new javax.swing.JButton();
         logOutButton = new javax.swing.JButton();
         salirButton = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(51, 51, 51));
         setLocation(new java.awt.Point(0, 0));
         setPreferredSize(new java.awt.Dimension(1820, 800));
+        setResizable(false);
+
+        panel1.setLayout(null);
 
         insertarReserva.setText("Añadir Reserva");
         insertarReserva.addActionListener(new java.awt.event.ActionListener() {
@@ -35,6 +48,8 @@ public class Menu extends javax.swing.JFrame {
                 insertarReservaActionPerformed(evt);
             }
         });
+        panel1.add(insertarReserva);
+        insertarReserva.setBounds(64, 21, 295, 68);
 
         mostrarReservasButton.setText("Mostrar Reservas");
         mostrarReservasButton.addActionListener(new java.awt.event.ActionListener() {
@@ -42,6 +57,8 @@ public class Menu extends javax.swing.JFrame {
                 mostrarReservasButtonActionPerformed(evt);
             }
         });
+        panel1.add(mostrarReservasButton);
+        mostrarReservasButton.setBounds(560, 20, 149, 68);
 
         eliminarReservaButton.setText("Eliminar Reserva");
         eliminarReservaButton.addActionListener(new java.awt.event.ActionListener() {
@@ -49,6 +66,8 @@ public class Menu extends javax.swing.JFrame {
                 eliminarReservaButtonActionPerformed(evt);
             }
         });
+        panel1.add(eliminarReservaButton);
+        eliminarReservaButton.setBounds(920, 20, 188, 68);
 
         logOutButton.setText("Cerrar Sesión");
         logOutButton.addActionListener(new java.awt.event.ActionListener() {
@@ -56,6 +75,8 @@ public class Menu extends javax.swing.JFrame {
                 logOutButtonActionPerformed(evt);
             }
         });
+        panel1.add(logOutButton);
+        logOutButton.setBounds(1280, 20, 162, 68);
 
         salirButton.setText("Salir");
         salirButton.addActionListener(new java.awt.event.ActionListener() {
@@ -63,37 +84,12 @@ public class Menu extends javax.swing.JFrame {
                 salirButtonActionPerformed(evt);
             }
         });
+        panel1.add(salirButton);
+        salirButton.setBounds(1580, 20, 145, 68);
 
-        javax.swing.GroupLayout panel1Layout = new javax.swing.GroupLayout(panel1);
-        panel1.setLayout(panel1Layout);
-        panel1Layout.setHorizontalGroup(
-            panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
-                .addGap(64, 64, 64)
-                .addComponent(insertarReserva, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(159, 159, 159)
-                .addComponent(mostrarReservasButton, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(176, 176, 176)
-                .addComponent(eliminarReservaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(212, 212, 212)
-                .addComponent(logOutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(159, 159, 159)
-                .addComponent(salirButton, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(111, Short.MAX_VALUE))
-        );
-        panel1Layout.setVerticalGroup(
-            panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panel1Layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(eliminarReservaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(mostrarReservasButton, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(logOutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(salirButton, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(insertarReserva, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(605, 605, 605))
-        );
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/fondoMenu.jpg"))); // NOI18N
+        panel1.add(jLabel1);
+        jLabel1.setBounds(0, 0, 1880, 970);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -105,8 +101,8 @@ public class Menu extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(panel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(panel1, javax.swing.GroupLayout.PREFERRED_SIZE, 970, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -176,9 +172,23 @@ public class Menu extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton eliminarReservaButton;
     private javax.swing.JButton insertarReserva;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JButton logOutButton;
     private javax.swing.JButton mostrarReservasButton;
     private javax.swing.JPanel panel1;
     private javax.swing.JButton salirButton;
     // End of variables declaration//GEN-END:variables
+
+class ImagenFondo extends JPanel{
+    
+    private Image imagen;
+    
+    public void ImagenDeFondoMenu(Graphics g){
+        imagen = new ImageIcon(getClass().getResource("fondoMenu.jpg")).getImage();
+        g.drawImage(imagen, 0, 0, getWidth(), HEIGHT, this);
+        setOpaque(false);
+        super.paint(g);
+    }
+}
+
 }
