@@ -60,8 +60,6 @@ public class MostrarReservas extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Myanmar Text", 1, 24)); // NOI18N
         jLabel1.setText("RESERVAS REGISTRADAS");
 
-        jTextField1.setText("jTextField1");
-
         jLabel2.setText("Buscar Reserva:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

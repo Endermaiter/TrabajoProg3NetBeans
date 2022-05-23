@@ -10,7 +10,7 @@ public class Writing {
     FileWriter fich;
 
 
-    public void escribirReservas(ArrayList<Cliente>reservas,String dni,String nombre,int telefono,String direccion,String correo,int numeroHabitacion,String tipoHabtacion,String tipoCamas,boolean vip,boolean garaje){
+    public void escribirReservas(ArrayList<Cliente>reservas,String dni,String nombre,int telefono,String direccion,String correo,int numeroHabitacion,String tipoHabtacion,String tipoCamas,String vip,String garaje){
         try {
             ArrayList<Cliente>listadoReservas = ArrayMethods.añadirReserva(reservas,dni,nombre,telefono,direccion,correo,numeroHabitacion,tipoHabtacion,tipoCamas,vip,garaje);
 
@@ -19,7 +19,7 @@ public class Writing {
 
             for(Cliente cli:listadoReservas){
                 fich.write("\n──────────────────────────────────────────────────────");
-                fich.write("\n⚫ DNI --> "+cli.getDni()+"\n⚫ Nombre --> "+cli.getNombre()+"\n⚫ Telefono --> "+cli.getTelefono()+"\n⚫ Dirección --> "+cli.getDireccion()+"\n⚫ Email --> "+cli.getCorreoElectronico()+"\n⚫ Numero de Habitación --> "+cli.getNumeroHabitacion()+"\n⚫ Tipo de Habitación --> "+cli.getTipoHabitacion()+"\n⚫ Tipo de Camas --> "+cli.getTipoCamas()+"\n⚫ V.I.P. --> "+cli.isVip()+"\n⚫ Garaje --> "+cli.isGaraje()+"\n");
+                fich.write("\n⚫ DNI --> "+cli.getDni()+"\n⚫ Nombre --> "+cli.getNombre()+"\n⚫ Telefono --> "+cli.getTelefono()+"\n⚫ Dirección --> "+cli.getDireccion()+"\n⚫ Email --> "+cli.getCorreoElectronico()+"\n⚫ Numero de Habitación --> "+cli.getNumeroHabitacion()+"\n⚫ Tipo de Habitación --> "+cli.getTipoHabitacion()+"\n⚫ Tipo de Camas --> "+cli.getTipoCamas()+"\n⚫ V.I.P. --> "+cli.getVip()+"\n⚫ Garaje --> "+cli.getGaraje()+"\n");
                 fich.write("──────────────────────────────────────────────────────");
 
             }

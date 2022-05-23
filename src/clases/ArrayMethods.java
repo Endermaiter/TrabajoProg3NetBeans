@@ -2,10 +2,10 @@ package clases;
 
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
-import trabajoProg.MetodosTrabajo;
+
 
 public class ArrayMethods {
-    public static ArrayList<Cliente> añadirReserva(ArrayList<Cliente>reservas, String dni,String nombre,int telefono,String direccion, String correoElectronico,int numeroHabitacion,String tipoHabitacion,String tipoCamas,boolean vip,boolean garaje){
+    public static ArrayList<Cliente> añadirReserva(ArrayList<Cliente>reservas, String dni,String nombre,int telefono,String direccion, String correoElectronico,int numeroHabitacion,String tipoHabitacion,String tipoCamas,String vip,String garaje){
         reservas.add(new Cliente(dni,nombre,telefono,direccion,correoElectronico,numeroHabitacion,tipoHabitacion,tipoCamas,vip,garaje));
         return reservas;
     }
@@ -19,7 +19,7 @@ public class ArrayMethods {
    
     public  static  ArrayList<Cliente>  eliminarReservas(ArrayList<Cliente>reservas){
 
-     String pedirDni= MetodosTrabajo.leerString("Inserte el dni registrado en la reserva  que desea eliminar:");
+     String pedirDni= JOptionPane.showInputDialog("Inserte el dni registrado en la reserva  que desea eliminar:");
      for (int i = 0; i<reservas.size();i++){
         if (reservas.get(i).getDni().equals(pedirDni)){
             reservas.remove(i);
@@ -33,7 +33,7 @@ public class ArrayMethods {
     }
 
     public static  ArrayList<Cliente> consultarReservas (ArrayList<Cliente>reservas){
-        String pedirDni= MetodosTrabajo.leerString("Inserte el dni registrado en la reserva  que desea consultar:");
+        String pedirDni= JOptionPane.showInputDialog("Inserte el dni registrado en la reserva  que desea consultar:");
         for (int i = 0; i<reservas.size();i++){
             if (reservas.get(i).getDni().equals(pedirDni)){
             JOptionPane.showMessageDialog(null,reservas.get(i));

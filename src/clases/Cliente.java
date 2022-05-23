@@ -9,12 +9,12 @@ public class Cliente {
     private int numeroHabitacion; // solo puede coger una habitacion
     private String tipoHabitacion; //suit o normal
     private String tipoCamas; //doble, triple, unitaria...etc
-    private boolean vip;
-    private boolean garaje;
+    private String vip;
+    private String garaje;
 
     public Cliente (){}
 
-    public Cliente(String dni, String nombre, int telefono, String direccion, String correoElectronico, int numeroHabitacion, String tipoHabitacion, String tipoCamas, boolean vip, boolean garaje) {
+    public Cliente(String dni, String nombre, int telefono, String direccion, String correoElectronico, int numeroHabitacion, String tipoHabitacion, String tipoCamas, String vip, String garaje) {
         this.dni = dni;
         this.nombre = nombre;
         this.telefono = telefono;
@@ -59,16 +59,24 @@ public class Cliente {
         return tipoCamas;
     }
 
-    public boolean isVip() {
+    public String getVip() {
         return vip;
     }
 
-    public boolean isGaraje() {
+    public void setVip(String vip) {
+        this.vip = vip;
+    }
+
+    public String getGaraje() {
         return garaje;
     }
 
+    public void setGaraje(String garaje) {
+        this.garaje = garaje;
+    }
 
-
+    
+    
     @Override
     public String toString() {
         return  "DNI: "+ dni + "  " +
