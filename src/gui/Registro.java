@@ -4,15 +4,27 @@ import clases.Cliente;
 import clases.Writing;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
-
-
+import java.sql.*;
+import basededatos.Conexion;
 public class Registro extends javax.swing.JFrame {
+    
+  PreparedStatement ps = null;
+ResultSet rs ;
+    
+    
     
     public static void registro(ArrayList<Cliente>reservas) {
         java.awt.EventQueue.invokeLater(() -> {
             new Registro(reservas).setVisible(true);
         });
     }
+    
+    
+    
+    
+    
+    
+    
     
     
     public Registro(ArrayList<Cliente>reservas) {
@@ -47,9 +59,10 @@ public class Registro extends javax.swing.JFrame {
         
         Writing write = new Writing();
         write.escribirReservas(reservas,dni,nombre,telefono,direccion,correo,numeroHabitacion,tipoHabtacion,tipoCamas,vip,garaje);
-        
+        insertarBD();
         
         JOptionPane.showMessageDialog(null, "¡Cliente registrado correctamente!");
+        this.dispose();
         });
     }
 
@@ -308,4 +321,99 @@ public class Registro extends javax.swing.JFrame {
     private javax.swing.JTextField textFieldNombre;
     private javax.swing.JTextField textFieldTelefono;
     // End of variables declaration//GEN-END:variables
+
+    
+    private void limpiarCajasRegistro(){
+    
+    //metodo para limpiar las cajas de texto
+    
+   textFieldDNI .setText("");
+   textFieldNombre .setText("");
+   textFieldTelefono .setText("");
+   textFieldDireccion .setText("");
+    textFieldCorreo  .setText("");
+  textFieldNHabitacion  .setText("");
+  comboBoxTHab.setSelectedIndex(1);
+  comboBoxTCamas.setSelectedIndex(1);
+   VipNone.setSelected(true);
+    VipSi.setSelected(false);
+      VipNo.setSelected(false);
+   GarajeNone.setSelected(true);
+    GarajeSi.setSelected(false);
+    GarajeNo.setSelected(false);
+}
+    
+    
+    
+    
+    
+private void insertarBD () {
+
+Connection con = null;
+            try{
+            
+            //Conexion Base de Datos   
+                
+            con = Conexion.establecerConexionBD();
+            
+            ps = (PreparedStatement) con.prepareStatement("INSERT INTO reservas(dni,nombre,telefono,direccion,correoElectronico,numeroHabitacion,tipoHabitacion,tipoCamas,vip,garaje) VALUES(?,?,?,?,?,?,?,?,?,?)");
+            ps.setString(1,textFieldDNI.getText());
+            ps.setString(2, textFieldNombre.getText());
+            ps.setInt(3, Integer.valueOf(textFieldTelefono.getText()));
+              ps.setString(4, textFieldDireccion.getText());
+            ps.setString(5, textFieldCorreo.getText());
+            ps.setInt(6, Integer.valueOf(textFieldNHabitacion.getText()));
+              ps.setString(7,comboBoxTHab.getSelectedItem().toString());
+            ps.setString(8,comboBoxTCamas.getSelectedItem().toString());
+             
+            if(VipNone.isSelected()){
+            ps.setString(9,VipNone.getLabel());   
+            
+        }else if(VipSi.isSelected()){
+              ps.setString(9,VipSi.getLabel());  
+             
+        }else if(VipNo.isSelected()){
+              ps.setString(9,VipNo.getLabel());  
+        }
+      
+        if(GarajeNone.isSelected()){
+             ps.setString(10,GarajeNone.getLabel()); 
+            
+        }else if(GarajeSi.isSelected()){
+              ps.setString(10,GarajeSi.getLabel()); 
+            
+        }else if(GarajeNo.isSelected()){
+              ps.setString(10,GarajeNo.getLabel()); 
+             
+        }
+            
+            
+            
+            ps.execute();
+            
+            //tabla
+            
+            
+            
+            JOptionPane.showMessageDialog(null, "Inserción aceptada");
+            limpiarCajasRegistro();
+            con.close();
+            }catch(SQLException e){
+                System.out.println(e);
+                JOptionPane.showMessageDialog(null, "La inserción fue rechazada");
+         }
+
+
+
+
+
+
+
+
+}
+
+
+
+
+
 }
