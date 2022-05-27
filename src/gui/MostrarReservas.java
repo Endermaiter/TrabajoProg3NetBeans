@@ -142,7 +142,7 @@ ResultSet rs ;
     
     
     
-    private void llenarTabla(){
+   public void llenarTabla(){
        /* DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
         Object rowDatos[] = new Object[11];
         for(int i = 0;i <reservas.size();i++){

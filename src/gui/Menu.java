@@ -1,8 +1,8 @@
 package gui;
 
+import LoginLogout.Menu_Login;
 import clases.ArrayMethods;
 import clases.Cliente;
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.util.ArrayList;
@@ -49,7 +49,7 @@ public class Menu extends javax.swing.JFrame {
             }
         });
         panel1.add(insertarReserva);
-        insertarReserva.setBounds(64, 21, 295, 68);
+        insertarReserva.setBounds(130, 20, 295, 68);
 
         mostrarReservasButton.setText("Mostrar Reservas");
         mostrarReservasButton.addActionListener(new java.awt.event.ActionListener() {
@@ -58,7 +58,7 @@ public class Menu extends javax.swing.JFrame {
             }
         });
         panel1.add(mostrarReservasButton);
-        mostrarReservasButton.setBounds(560, 20, 149, 68);
+        mostrarReservasButton.setBounds(470, 20, 149, 68);
 
         eliminarReservaButton.setText("Eliminar Reserva");
         eliminarReservaButton.addActionListener(new java.awt.event.ActionListener() {
@@ -67,7 +67,7 @@ public class Menu extends javax.swing.JFrame {
             }
         });
         panel1.add(eliminarReservaButton);
-        eliminarReservaButton.setBounds(920, 20, 188, 68);
+        eliminarReservaButton.setBounds(680, 20, 188, 68);
 
         logOutButton.setText("Cerrar Sesión");
         logOutButton.addActionListener(new java.awt.event.ActionListener() {
@@ -76,7 +76,7 @@ public class Menu extends javax.swing.JFrame {
             }
         });
         panel1.add(logOutButton);
-        logOutButton.setBounds(1280, 20, 162, 68);
+        logOutButton.setBounds(910, 20, 162, 68);
 
         salirButton.setText("Salir");
         salirButton.addActionListener(new java.awt.event.ActionListener() {
@@ -85,7 +85,7 @@ public class Menu extends javax.swing.JFrame {
             }
         });
         panel1.add(salirButton);
-        salirButton.setBounds(1580, 20, 145, 68);
+        salirButton.setBounds(1130, 20, 145, 68);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/fondoMenu.jpg"))); // NOI18N
         panel1.add(jLabel1);
@@ -112,11 +112,13 @@ public class Menu extends javax.swing.JFrame {
     
     
     private void eliminarReservaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarReservaButtonActionPerformed
-        ArrayMethods.eliminarReservas(listadoReservas);
+        //ArrayMethods.eliminarReservas(listadoReservas);
+        EliminarReserva.eliminarReserva();
     }//GEN-LAST:event_eliminarReservaButtonActionPerformed
 
     private void logOutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logOutButtonActionPerformed
-        
+        this.dispose();
+        Menu_Login.login();
     }//GEN-LAST:event_logOutButtonActionPerformed
 
     private void insertarReservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insertarReservaActionPerformed
@@ -125,7 +127,7 @@ public class Menu extends javax.swing.JFrame {
 
     private void mostrarReservasButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mostrarReservasButtonActionPerformed
         //ArrayMethods.mostrarReservas(listadoReservas);
-        MostrarReservas.mostrarReservas(listadoReservas);
+        MostrarReservas.mostrarReservas();
     }//GEN-LAST:event_mostrarReservasButtonActionPerformed
 
     private void salirButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirButtonActionPerformed
@@ -136,7 +138,7 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_salirButtonActionPerformed
 
     
-    public static void main(String args[]) {
+    public static void menu() {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
