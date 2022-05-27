@@ -4,22 +4,27 @@
  */
 package gui;
 
-import clases.Cliente;
-import java.util.ArrayList;
+import basededatos.Conexion;
 import javax.swing.table.DefaultTableModel;
+import java.sql.SQLException;
+import java.sql.*;
+import java.sql.ResultSet;
+
 
 /**
  *
  * @author Endermaiter
  */
 public class MostrarReservas extends javax.swing.JFrame {
-
+PreparedStatement ps = null;
+DefaultTableModel modelo ;
+ResultSet rs ;
     /**
      * Creates new form MostrarReservas
      */
-    public MostrarReservas(ArrayList<Cliente>reservas) {
+    public MostrarReservas() {
         initComponents();
-        llenarTabla(reservas);
+        llenarTabla();
     }
 
     /**
@@ -32,14 +37,14 @@ public class MostrarReservas extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tablaDatos = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tablaDatos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -55,7 +60,7 @@ public class MostrarReservas extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tablaDatos);
 
         jLabel1.setFont(new java.awt.Font("Myanmar Text", 1, 24)); // NOI18N
         jLabel1.setText("RESERVAS REGISTRADAS");
@@ -103,7 +108,7 @@ public class MostrarReservas extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void mostrarReservas(ArrayList<Cliente>reservas) {
+    public static void mostrarReservas() {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -130,13 +135,15 @@ public class MostrarReservas extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MostrarReservas(reservas).setVisible(true);
+                new MostrarReservas().setVisible(true);
             }
         });
     }
     
-    private void llenarTabla(ArrayList<Cliente>reservas){
-        DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+    
+    
+    private void llenarTabla(){
+       /* DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
         Object rowDatos[] = new Object[11];
         for(int i = 0;i <reservas.size();i++){
             rowDatos[0]= reservas.get(i).getDni();
@@ -150,14 +157,41 @@ public class MostrarReservas extends javax.swing.JFrame {
             rowDatos[8]= reservas.get(i).getVip();
             rowDatos[9]= reservas.get(i).getGaraje();
             modelo.addRow(rowDatos);
-        }    
+
+        }  
+*/
+       Connection con = null;
+        try{
+            
+            //base de datos
+            con = Conexion.establecerConexionBD();
+            ps = (PreparedStatement)con.prepareStatement("SELECT * FROM reservas");
+            ResultSet rs = ps.executeQuery();
+            
+            //tabla
+            
+            modelo = (DefaultTableModel) tablaDatos.getModel();
+           
+            int cantidadColl = rs.getMetaData().getColumnCount();
+            while(rs.next()){
+                Object rowDatos[] = new Object[cantidadColl];
+                for(int i=0;i<cantidadColl;i++){
+                    rowDatos[i]= rs.getString(i+1);
+                }
+                modelo.addRow(rowDatos);
+            }
+    }catch(SQLException ex){
+        System.out.println(ex);
     }
+    
+}
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JTable tablaDatos;
     // End of variables declaration//GEN-END:variables
 }
