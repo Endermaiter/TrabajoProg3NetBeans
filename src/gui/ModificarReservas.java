@@ -4,17 +4,26 @@
  */
 package gui;
 
+import basededatos.Conexion;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
+
 /**
  *
  * @author David
  */
 public class ModificarReservas extends javax.swing.JFrame {
 
-    /**
-     * Creates new form ModificarReservas
-     */
+   PreparedStatement ps = null ;
+   DefaultTableModel modelo  ;
     public ModificarReservas() {
         initComponents();
+        llenarTabla();
     }
 
     /**
@@ -29,7 +38,7 @@ public class ModificarReservas extends javax.swing.JFrame {
         grupoVip = new javax.swing.ButtonGroup();
         grupoGaraje = new javax.swing.ButtonGroup();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tablaDatos = new javax.swing.JTable();
         labelDni = new javax.swing.JLabel();
         labelNombre = new javax.swing.JLabel();
         labelTlf = new javax.swing.JLabel();
@@ -59,7 +68,7 @@ public class ModificarReservas extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tablaDatos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -75,7 +84,12 @@ public class ModificarReservas extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        tablaDatos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaDatosMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tablaDatos);
 
         labelDni.setText("Dni:");
 
@@ -126,6 +140,11 @@ public class ModificarReservas extends javax.swing.JFrame {
         labelDni1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         jButton1.setText("Modificar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -257,34 +276,182 @@ public class ModificarReservas extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+            Connection con = null;
+            try{
+            
+            //Base de Datos    
+            
+            con = Conexion.establecerConexionBD();
+            ps = (PreparedStatement) con.prepareStatement("UPDATE reservas SET dni=?,nombre=?,telefono=? direccion=?,correoElectronico=?,numeroHabitacion=?,tipoHabitacion=?,tipoCamas=?, vip=?,garaje=? WHERE dni=?");
+            ps.setString(1,textFieldDNI.getText());
+            ps.setString(2, textFieldNombre.getText());
+            ps.setInt(3, Integer.valueOf(textFieldTelefono.getText()) );
+          ps.setString(4,textFieldDireccion.getText());
+          ps.setString(5,textFieldCorreo.getText());
+          ps.setInt(6,Integer.valueOf(textFieldNHabitacion.getText()) );
+          ps.setString(7,comboBoxTHab.getSelectedItem().toString());
+        ps.setString(8,comboBoxTCamas.getSelectedItem().toString());
+         
+        if(VipNone.isSelected()){
+             ps.setString(9,VipNone.getLabel());
+        }else if(VipSi.isSelected()){
+             ps.setString(  9,VipSi.getLabel());
+        }else if(VipNo.isSelected()){
+            ps.setString(9,VipNo.getLabel()); 
+        }
+      
+        if(GarajeNone.isSelected()){
+            ps.setString(10,GarajeNone.getLabel());
+        }else if(GarajeSi.isSelected()){
+            ps.setString(10,GarajeSi.getLabel());
+        }else if(GarajeNo.isSelected()){
+           ps.setString(10,GarajeNo.getLabel());
+        
+         
+         
+         }
+          ps.setString(10,textFieldDNI.getText());
+            ps.executeUpdate();
+            
+            //tabla
+            
+            int fila = tablaDatos.getSelectedRow();
+            tablaDatos.setValueAt(textFieldDNI.getText(), fila, 0);
+            tablaDatos.setValueAt(textFieldNombre.getText(), fila, 1);
+            tablaDatos.setValueAt(textFieldTelefono.getText(), fila, 2);
+            tablaDatos.setValueAt(textFieldDireccion.getText(), fila, 3);
+            tablaDatos.setValueAt(textFieldCorreo.getText(), fila, 4);
+            tablaDatos.setValueAt(textFieldNHabitacion.getText(), fila, 5);
+            tablaDatos.setValueAt(comboBoxTHab.getSelectedItem().toString(), fila, 6);
+            tablaDatos.setValueAt(comboBoxTCamas.getSelectedItem().toString(), fila, 7);
+                if(VipNone.isSelected()){
+             tablaDatos.setValueAt(VipNone.getLabel(), fila, 8);
+        }else if(VipSi.isSelected()){
+            tablaDatos.setValueAt(VipSi.getLabel(), fila, 8);
+        }else if(VipNo.isSelected()){
+            tablaDatos.setValueAt(VipNo.getLabel(), fila, 8); 
+        }
+      
+        if(GarajeNone.isSelected()){
+            tablaDatos.setValueAt(GarajeNone.getLabel(), fila, 9);
+        }else if(GarajeSi.isSelected()){
+            tablaDatos.setValueAt(GarajeSi.getLabel(), fila, 9);
+        }else if(GarajeNo.isSelected()){
+           tablaDatos.setValueAt(GarajeNo.getLabel(), fila, 9);
+            
+        }    
+            JOptionPane.showMessageDialog(null,"¡Reserva Modificada!");
+           
+            
+            }catch(SQLException e){
+                JOptionPane.showMessageDialog(null, "Hubo un error al modificar la reserva, intentelo de nuevo");
+         }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void tablaDatosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaDatosMouseClicked
+          
+        Connection con = null;
+        try{
+            con = Conexion.establecerConexionBD();
+            int fila = tablaDatos.getSelectedRow();
+            String codigo = tablaDatos.getValueAt(fila, 0).toString();
+            ps = (PreparedStatement) con.prepareStatement("SELECT dni,nombre,telefono,direccion,correoElectronico,numeroHabitacion,tipoHabitacion,tipoCamas, vip,garaje FROM reservas  WHERE dni=?");
+            ps.setString(1, codigo);
+           ResultSet rs = ps.executeQuery();
+            
+            if(rs.next()){
+                ps.setString(1,textFieldDNI.getText());
+            ps.setString(2, textFieldNombre.getText());
+            ps.setInt(3, Integer.valueOf(textFieldTelefono.getText()) );
+          ps.setString(4,textFieldDireccion.getText());
+          ps.setString(5,textFieldCorreo.getText());
+          ps.setInt(6,Integer.valueOf(textFieldNHabitacion.getText()) );
+          ps.setString(7,comboBoxTHab.getSelectedItem().toString());
+        ps.setString(8,comboBoxTCamas.getSelectedItem().toString());
+         
+        if(VipNone.isSelected()){
+             ps.setString(9,VipNone.getLabel());
+        }else if(VipSi.isSelected()){
+             ps.setString(  9,VipSi.getLabel());
+        }else if(VipNo.isSelected()){
+            ps.setString(9,VipNo.getLabel()); 
+        }
+      
+        if(GarajeNone.isSelected()){
+            ps.setString(10,GarajeNone.getLabel());
+        }else if(GarajeSi.isSelected()){
+            ps.setString(10,GarajeSi.getLabel());
+        }else if(GarajeNo.isSelected()){
+           ps.setString(10,GarajeNo.getLabel());
+        
+         
+         
+         }
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+    }//GEN-LAST:event_tablaDatosMouseClicked
+
+    
+     public void llenarTabla(){
+       /* DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+        Object rowDatos[] = new Object[11];
+        for(int i = 0;i <reservas.size();i++){
+            rowDatos[0]= reservas.get(i).getDni();
+            rowDatos[1]= reservas.get(i).getNombre();
+            rowDatos[2]= reservas.get(i).getTelefono();
+            rowDatos[3]= reservas.get(i).getDireccion();
+            rowDatos[4]= reservas.get(i).getCorreoElectronico();
+            rowDatos[5]= reservas.get(i).getNumeroHabitacion();
+            rowDatos[6]= reservas.get(i).getTipoHabitacion();
+            rowDatos[7]= reservas.get(i).getTipoCamas();
+            rowDatos[8]= reservas.get(i).getVip();
+            rowDatos[9]= reservas.get(i).getGaraje();
+            modelo.addRow(rowDatos);
+
+        }  
+*/
+       Connection con = null;
+        try{
+            
+            //base de datos
+            con = Conexion.establecerConexionBD();
+            ps = (PreparedStatement)con.prepareStatement("SELECT * FROM reservas");
+            ResultSet rs = ps.executeQuery();
+            
+            //tabla
+            
+            modelo = (DefaultTableModel) tablaDatos.getModel();
+           
+            int cantidadColl = rs.getMetaData().getColumnCount();
+            while(rs.next()){
+                Object rowDatos[] = new Object[cantidadColl];
+                for(int i=0;i<cantidadColl;i++){
+                    rowDatos[i]= rs.getString(i+1);
+                }
+                modelo.addRow(rowDatos);
+            }
+    }catch(SQLException ex){
+        System.out.println(ex);
+    }
+    
+}
+    
+    
+    
+    
+    
+    
+    
+    
+    
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ModificarReservas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ModificarReservas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ModificarReservas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ModificarReservas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
+    public static void modificarReservas() {
+  
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new ModificarReservas().setVisible(true);
@@ -305,7 +472,6 @@ public class ModificarReservas extends javax.swing.JFrame {
     private javax.swing.ButtonGroup grupoVip;
     private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel labelCorreo;
     private javax.swing.JLabel labelDir;
     private javax.swing.JLabel labelDni;
@@ -317,6 +483,7 @@ public class ModificarReservas extends javax.swing.JFrame {
     private javax.swing.JLabel labelTHab;
     private javax.swing.JLabel labelTlf;
     private javax.swing.JLabel labelVIP;
+    private javax.swing.JTable tablaDatos;
     private javax.swing.JTextField textFieldCorreo;
     private javax.swing.JTextField textFieldDNI;
     private javax.swing.JTextField textFieldDireccion;
