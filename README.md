@@ -1,1 +1,2 @@
-# TrabajoProg3NetBeans
+# Programa `Reserva de Hoteles`
+## BD Implementada
