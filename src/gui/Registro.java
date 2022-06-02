@@ -44,17 +44,17 @@ ResultSet rs ;
         if(VipNone.isSelected()){
             vip = null;
         }else if(VipSi.isSelected()){
-             vip = "True";
+             vip = "Si";
         }else if(VipNo.isSelected()){
-             vip = "False";
+             vip = "No";
         }
         String garaje = null;
         if(GarajeNone.isSelected()){
             garaje = null;
         }else if(GarajeSi.isSelected()){
-             garaje = "True";
+             garaje = "Si";
         }else if(GarajeNo.isSelected()){
-             garaje = "False";
+             garaje = "No";
         }
         
         Writing write = new Writing();

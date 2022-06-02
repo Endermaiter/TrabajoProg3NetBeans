@@ -415,11 +415,11 @@ public class ModificarReservas extends javax.swing.JFrame {
                 if ("None".equals(rs.getString("vip"))) {
                     VipNone.setSelected(true);
 
-                } else if ("true".equals(rs.getString("vip"))) {
+                } else if ("Si".equals(rs.getString("vip"))) {
 
                     VipSi.setSelected(true);
 
-                } else if ("false".equals(rs.getString("vip"))) {
+                } else if ("No".equals(rs.getString("vip"))) {
 
                     VipNo.setSelected(true);
 
@@ -428,11 +428,11 @@ public class ModificarReservas extends javax.swing.JFrame {
                 if ("None".equals(rs.getString("garaje"))) {
                     GarajeNone.setSelected(true);
 
-                } else if ("true".equals(rs.getString("garaje"))) {
+                } else if ("Si".equals(rs.getString("garaje"))) {
 
                     GarajeSi.setSelected(true);
 
-                } else if ("false".equals(rs.getString("garaje"))) {
+                } else if ("No".equals(rs.getString("garaje"))) {
 
                     GarajeNo.setSelected(true);
 
