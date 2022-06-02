@@ -8,11 +8,11 @@
     </Component>
   </NonVisualComponents>
   <Properties>
-    <Property name="defaultCloseOperation" type="int" value="3"/>
+    <Property name="defaultCloseOperation" type="int" value="2"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
-    <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
+    <SyntheticProperty name="generateCenter" type="boolean" value="true"/>
   </SyntheticProperties>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
@@ -35,7 +35,7 @@
                       <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                       <Component id="jScrollPane1" min="-2" pref="1013" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Component id="labelNombre" alignment="0" max="32767" attributes="0"/>
@@ -50,22 +50,29 @@
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="labelDir" alignment="1" max="32767" attributes="0"/>
+                                      <Component id="labelDir" alignment="1" pref="122" max="32767" attributes="0"/>
                                       <Component id="labelTlf" alignment="1" max="32767" attributes="0"/>
-                                      <Component id="labelNHab" alignment="1" max="32767" attributes="0"/>
-                                      <Component id="labelTHab" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="labelVIP" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="labelTCamas" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="labelGaraje" alignment="1" min="-2" pref="122" max="-2" attributes="0"/>
                                   </Group>
                                   <Component id="labelCorreo" min="-2" pref="122" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="textFieldTelefono" alignment="1" pref="326" max="32767" attributes="0"/>
+                                  <Component id="textFieldDireccion" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="textFieldCorreo" alignment="0" max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="labelNHab" alignment="1" max="32767" attributes="0"/>
+                                  <Component id="labelTHab" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="labelVIP" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="labelTCamas" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="labelGaraje" alignment="1" min="-2" pref="122" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="textFieldTelefono" alignment="1" max="32767" attributes="0"/>
-                                      <Component id="textFieldDireccion" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="textFieldCorreo" alignment="0" max="32767" attributes="0"/>
                                       <Component id="textFieldNHabitacion" alignment="0" max="32767" attributes="0"/>
                                       <Component id="comboBoxTHab" alignment="0" min="-2" pref="326" max="-2" attributes="0"/>
                                   </Group>
@@ -93,8 +100,9 @@
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="105" max="-2" attributes="0"/>
-                              <Component id="jButton1" min="-2" pref="286" max="-2" attributes="0"/>
+                              <Component id="botonModificar" min="-2" pref="286" max="-2" attributes="0"/>
                           </Group>
+                          <Component id="jSeparator1" alignment="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
@@ -144,7 +152,9 @@
                               <Component id="textFieldCorreo" min="-2" pref="24" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+                      <Component id="jSeparator1" min="-2" pref="10" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="labelNHab" min="-2" pref="26" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
@@ -177,12 +187,12 @@
                           <Component id="GarajeNo" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
-                      <Component id="jButton1" min="-2" pref="40" max="-2" attributes="0"/>
-                      <EmptySpace pref="52" max="32767" attributes="0"/>
+                      <Component id="botonModificar" min="-2" pref="40" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jScrollPane1" max="32767" attributes="0"/>
+                      <Component id="jScrollPane1" pref="522" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -347,7 +357,7 @@
             <StringItem index="0" value="Seleccione una opci&#xf3;n"/>
             <StringItem index="1" value="Normal"/>
             <StringItem index="2" value="Suit"/>
-            <StringItem index="3" value="Duplex"/>
+            <StringItem index="3" value="D&#xfa;plex"/>
           </StringArray>
         </Property>
       </Properties>
@@ -434,13 +444,15 @@
         <Property name="horizontalTextPosition" type="int" value="0"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton1">
+    <Component class="javax.swing.JButton" name="botonModificar">
       <Properties>
         <Property name="text" type="java.lang.String" value="Modificar"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonModificarActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JSeparator" name="jSeparator1">
     </Component>
   </SubComponents>
 </Form>

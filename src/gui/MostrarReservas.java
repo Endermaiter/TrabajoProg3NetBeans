@@ -5,10 +5,14 @@
 package gui;
 
 import basededatos.Conexion;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import javax.swing.table.DefaultTableModel;
 import java.sql.SQLException;
 import java.sql.*;
 import java.sql.ResultSet;
+import javax.swing.RowFilter;
+import javax.swing.table.TableRowSorter;
 
 
 /**
@@ -19,6 +23,7 @@ public class MostrarReservas extends javax.swing.JFrame {
 PreparedStatement ps = null;
 DefaultTableModel modelo ;
 ResultSet rs ;
+TableRowSorter trs;
     /**
      * Creates new form MostrarReservas
      */
@@ -39,7 +44,7 @@ ResultSet rs ;
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaDatos = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtBuscar = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -65,6 +70,12 @@ ResultSet rs ;
         jLabel1.setFont(new java.awt.Font("Myanmar Text", 1, 24)); // NOI18N
         jLabel1.setText("RESERVAS REGISTRADAS");
 
+        txtBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtBuscarKeyTyped(evt);
+            }
+        });
+
         jLabel2.setText("Buscar Reserva:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -85,7 +96,7 @@ ResultSet rs ;
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(368, 368, 368))
         );
         layout.setVerticalGroup(
@@ -95,7 +106,7 @@ ResultSet rs ;
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 545, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -103,11 +114,21 @@ ResultSet rs ;
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
+    private void txtBuscarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyTyped
+        txtBuscar.addKeyListener(new KeyAdapter(){
+            @Override
+            public void keyReleased(KeyEvent ke){
+                trs.setRowFilter(RowFilter.regexFilter(txtBuscar.getText(),0,1,2,3,4,5,6,7,8,9));
+            }
+        });
+        trs = new TableRowSorter(modelo);
+        tablaDatos.setRowSorter(trs);
+    }//GEN-LAST:event_txtBuscarKeyTyped
+
+    
     public static void mostrarReservas() {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -133,40 +154,22 @@ ResultSet rs ;
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new MostrarReservas().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new MostrarReservas().setVisible(true);
         });
     }
     
     
     
    public void llenarTabla(){
-       /* DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
-        Object rowDatos[] = new Object[11];
-        for(int i = 0;i <reservas.size();i++){
-            rowDatos[0]= reservas.get(i).getDni();
-            rowDatos[1]= reservas.get(i).getNombre();
-            rowDatos[2]= reservas.get(i).getTelefono();
-            rowDatos[3]= reservas.get(i).getDireccion();
-            rowDatos[4]= reservas.get(i).getCorreoElectronico();
-            rowDatos[5]= reservas.get(i).getNumeroHabitacion();
-            rowDatos[6]= reservas.get(i).getTipoHabitacion();
-            rowDatos[7]= reservas.get(i).getTipoCamas();
-            rowDatos[8]= reservas.get(i).getVip();
-            rowDatos[9]= reservas.get(i).getGaraje();
-            modelo.addRow(rowDatos);
-
-        }  
-*/
+       
        Connection con = null;
         try{
             
             //base de datos
             con = Conexion.establecerConexionBD();
             ps = (PreparedStatement)con.prepareStatement("SELECT * FROM reservas");
-            ResultSet rs = ps.executeQuery();
+            rs = ps.executeQuery();
             
             //tabla
             
@@ -191,7 +194,7 @@ ResultSet rs ;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTable tablaDatos;
+    private javax.swing.JTextField txtBuscar;
     // End of variables declaration//GEN-END:variables
 }

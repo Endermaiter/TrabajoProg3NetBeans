@@ -34,7 +34,7 @@ DefaultTableModel modelo ;
         tablaDatos = new javax.swing.JTable();
         botoneliminarReserva = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         tablaDatos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -85,6 +85,7 @@ DefaultTableModel modelo ;
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void botoneliminarReservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botoneliminarReservaActionPerformed

@@ -12,15 +12,15 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-
 /**
  *
  * @author David
  */
 public class ModificarReservas extends javax.swing.JFrame {
 
-   PreparedStatement ps = null ;
-   DefaultTableModel modelo  ;
+    PreparedStatement ps = null;
+    DefaultTableModel modelo;
+
     public ModificarReservas() {
         initComponents();
         llenarTabla();
@@ -64,9 +64,10 @@ public class ModificarReservas extends javax.swing.JFrame {
         VipNo = new javax.swing.JRadioButton();
         GarajeNo = new javax.swing.JRadioButton();
         labelDni1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        botonModificar = new javax.swing.JButton();
+        jSeparator1 = new javax.swing.JSeparator();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         tablaDatos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -111,7 +112,7 @@ public class ModificarReservas extends javax.swing.JFrame {
 
         labelGaraje.setText("Garaje:");
 
-        comboBoxTHab.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione una opción", "Normal", "Suit", "Duplex" }));
+        comboBoxTHab.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione una opción", "Normal", "Suit", "Dúplex" }));
         comboBoxTHab.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboBoxTHabActionPerformed(evt);
@@ -144,10 +145,10 @@ public class ModificarReservas extends javax.swing.JFrame {
         labelDni1.setText("MODIFICAR RESERVA");
         labelDni1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
-        jButton1.setText("Modificar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        botonModificar.setText("Modificar");
+        botonModificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                botonModificarActionPerformed(evt);
             }
         });
 
@@ -161,7 +162,7 @@ public class ModificarReservas extends javax.swing.JFrame {
                         .addGap(15, 15, 15)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1013, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(labelNombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -173,20 +174,24 @@ public class ModificarReservas extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(labelDir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(labelTlf, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(labelNHab, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(labelTHab, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(labelVIP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(labelTCamas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(labelGaraje, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(labelDir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE)
+                                        .addComponent(labelTlf, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                     .addComponent(labelCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(textFieldTelefono, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE)
+                                    .addComponent(textFieldDireccion)
+                                    .addComponent(textFieldCorreo)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(labelNHab, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(labelTHab, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(labelVIP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(labelTCamas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(labelGaraje, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(textFieldTelefono, javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(textFieldDireccion)
-                                        .addComponent(textFieldCorreo)
                                         .addComponent(textFieldNHabitacion)
                                         .addComponent(comboBoxTHab, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(layout.createSequentialGroup()
@@ -206,7 +211,8 @@ public class ModificarReservas extends javax.swing.JFrame {
                                     .addComponent(comboBoxTCamas, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(105, 105, 105)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(botonModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jSeparator1)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(454, 454, 454)
                         .addComponent(labelDni1)))
@@ -243,7 +249,9 @@ public class ModificarReservas extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(2, 2, 2)
                                 .addComponent(textFieldCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(15, 15, 15)
+                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(labelNHab, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
@@ -270,57 +278,54 @@ public class ModificarReservas extends javax.swing.JFrame {
                             .addComponent(GarajeSi)
                             .addComponent(GarajeNo))
                         .addGap(35, 35, 35)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(52, Short.MAX_VALUE))
+                        .addComponent(botonModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane1)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 522, Short.MAX_VALUE)
                         .addContainerGap())))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-            Connection con = null;
-            try{
-            
+    private void botonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonModificarActionPerformed
+        Connection con = null;
+        try {
+
             //Base de Datos    
-            
             con = Conexion.establecerConexionBD();
-            ps = (PreparedStatement) con.prepareStatement("UPDATE reservas SET dni=?,nombre=?,telefono=? direccion=?,correoElectronico=?,numeroHabitacion=?,tipoHabitacion=?,tipoCamas=?, vip=?,garaje=? WHERE dni=?");
-            ps.setString(1,textFieldDNI.getText());
+            ps = (PreparedStatement) con.prepareStatement("UPDATE reservas SET dni=?,nombre=?,telefono=?, direccion=?,correoElectronico=?,numeroHabitacion=?,tipoHabitacion=?,tipoCamas=?, vip=?,garaje=? WHERE dni=?");
+            ps.setString(1, textFieldDNI.getText());
             ps.setString(2, textFieldNombre.getText());
-            ps.setInt(3, Integer.valueOf(textFieldTelefono.getText()) );
-          ps.setString(4,textFieldDireccion.getText());
-          ps.setString(5,textFieldCorreo.getText());
-          ps.setInt(6,Integer.valueOf(textFieldNHabitacion.getText()) );
-          ps.setString(7,comboBoxTHab.getSelectedItem().toString());
-        ps.setString(8,comboBoxTCamas.getSelectedItem().toString());
-         
-        if(VipNone.isSelected()){
-             ps.setString(9,VipNone.getLabel());
-        }else if(VipSi.isSelected()){
-             ps.setString(  9,VipSi.getLabel());
-        }else if(VipNo.isSelected()){
-            ps.setString(9,VipNo.getLabel()); 
-        }
-      
-        if(GarajeNone.isSelected()){
-            ps.setString(10,GarajeNone.getLabel());
-        }else if(GarajeSi.isSelected()){
-            ps.setString(10,GarajeSi.getLabel());
-        }else if(GarajeNo.isSelected()){
-           ps.setString(10,GarajeNo.getLabel());
-        
-         
-         
-         }
-          ps.setString(11,textFieldDNI.getText());
+            ps.setInt(3, Integer.valueOf(textFieldTelefono.getText()));
+            ps.setString(4, textFieldDireccion.getText());
+            ps.setString(5, textFieldCorreo.getText());
+            ps.setInt(6, Integer.valueOf(textFieldNHabitacion.getText()));
+            ps.setString(7, comboBoxTHab.getSelectedItem().toString());
+            ps.setString(8, comboBoxTCamas.getSelectedItem().toString());
+
+            if (VipNone.isSelected()) {
+                ps.setString(9, VipNone.getLabel());
+            } else if (VipSi.isSelected()) {
+                ps.setString(9, VipSi.getLabel());
+            } else if (VipNo.isSelected()) {
+                ps.setString(9, VipNo.getLabel());
+            }
+
+            if (GarajeNone.isSelected()) {
+                ps.setString(10, GarajeNone.getLabel());
+            } else if (GarajeSi.isSelected()) {
+                ps.setString(10, GarajeSi.getLabel());
+            } else if (GarajeNo.isSelected()) {
+                ps.setString(10, GarajeNo.getLabel());
+
+            }
+            ps.setString(11, textFieldDNI.getText());
             ps.executeUpdate();
-            
+
             //tabla
-            
             int fila = tablaDatos.getSelectedRow();
             tablaDatos.setValueAt(textFieldDNI.getText(), fila, 0);
             tablaDatos.setValueAt(textFieldNombre.getText(), fila, 1);
@@ -330,126 +335,109 @@ public class ModificarReservas extends javax.swing.JFrame {
             tablaDatos.setValueAt(textFieldNHabitacion.getText(), fila, 5);
             tablaDatos.setValueAt(comboBoxTHab.getSelectedItem().toString(), fila, 6);
             tablaDatos.setValueAt(comboBoxTCamas.getSelectedItem().toString(), fila, 7);
-                if(VipNone.isSelected()){
-             tablaDatos.setValueAt(VipNone.getLabel(), fila, 8);
-        }else if(VipSi.isSelected()){
-            tablaDatos.setValueAt(VipSi.getLabel(), fila, 8);
-        }else if(VipNo.isSelected()){
-            tablaDatos.setValueAt(VipNo.getLabel(), fila, 8); 
+            if (VipNone.isSelected()) {
+                tablaDatos.setValueAt(VipNone.getLabel(), fila, 8);
+            } else if (VipSi.isSelected()) {
+                tablaDatos.setValueAt(VipSi.getLabel(), fila, 8);
+            } else if (VipNo.isSelected()) {
+                tablaDatos.setValueAt(VipNo.getLabel(), fila, 8);
+            }
+
+            if (GarajeNone.isSelected()) {
+                tablaDatos.setValueAt(GarajeNone.getLabel(), fila, 9);
+            } else if (GarajeSi.isSelected()) {
+                tablaDatos.setValueAt(GarajeSi.getLabel(), fila, 9);
+            } else if (GarajeNo.isSelected()) {
+                tablaDatos.setValueAt(GarajeNo.getLabel(), fila, 9);
+
+            }
+            JOptionPane.showMessageDialog(null, "¡Reserva Modificada!");
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Hubo un error al modificar la reserva, intentelo de nuevo");
+            System.out.println(e);
         }
-      
-        if(GarajeNone.isSelected()){
-            tablaDatos.setValueAt(GarajeNone.getLabel(), fila, 9);
-        }else if(GarajeSi.isSelected()){
-            tablaDatos.setValueAt(GarajeSi.getLabel(), fila, 9);
-        }else if(GarajeNo.isSelected()){
-           tablaDatos.setValueAt(GarajeNo.getLabel(), fila, 9);
-            
-        }    
-            JOptionPane.showMessageDialog(null,"¡Reserva Modificada!");
-           
-            
-            }catch(SQLException e){
-                JOptionPane.showMessageDialog(null, "Hubo un error al modificar la reserva, intentelo de nuevo");
-         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_botonModificarActionPerformed
 
     private void tablaDatosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaDatosMouseClicked
-          
+
         Connection con = null;
-        try{
+        try {
             con = Conexion.establecerConexionBD();
             int fila = tablaDatos.getSelectedRow();
             String codigo = tablaDatos.getValueAt(fila, 0).toString();
             ps = (PreparedStatement) con.prepareStatement("SELECT dni,nombre,telefono,direccion,correoElectronico,numeroHabitacion,tipoHabitacion,tipoCamas, vip,garaje FROM reservas  WHERE dni=?");
             ps.setString(1, codigo);
-           ResultSet rs = ps.executeQuery();
-            
-            if(rs.next()){
-           textFieldDNI.setText(rs.getString("dni"));
-         textFieldNombre.setText(rs.getString("nombre"));
-           textFieldTelefono.setText(rs.getString("telefono"));
-       textFieldDireccion.setText(rs.getString("direccion"));
-         textFieldCorreo.setText(rs.getString("correoElectronico"));
-         textFieldNHabitacion.setText(rs.getString("numeroHabitacion"));
-         if(rs.getString("tipoHabitacion")=="Normal") {
-         comboBoxTHab.setSelectedIndex(1);
-         
-         
-         } else if (rs.getString("tipoHabitacion")=="Suit"){
-         
-             comboBoxTHab.setSelectedIndex(2);
-         
-         
-         } else if (rs.getString("tipoHabitacion")=="Dúplex"){
-         
-             comboBoxTHab.setSelectedIndex(3);
-         
-         
-         } 
-         
-          if(rs.getString("tipoCamas")=="Individual") {
-         comboBoxTCamas.setSelectedIndex(1);
-         
-         
-         } else if (rs.getString("tipoCamas")=="Doble"){
-         
-             comboBoxTCamas.setSelectedIndex(2);
-         
-         
-         }  else if (rs.getString("tipoCamas")=="Matrimonio"){
-         
-             comboBoxTCamas.setSelectedIndex(3);
-         
-         } else if (rs.getString("tipoCamas")=="Triple"){
-         
-             comboBoxTCamas.setSelectedIndex(4);
-         
-         }
-          else if (rs.getString("tipoCamas")=="Cama de agua"){
-         
-             comboBoxTCamas.setSelectedIndex(5);
-         
-         }
-         
-         
-         
-    
-      if(rs.getString("vip")=="None") {
-         VipNone.setSelected(true);
-         
-         
-         } else if (rs.getString("vip")=="true"){
-         
-             VipSi.setSelected(true);
-         
-         
-         }
-         else if (rs.getString("vip")=="false"){
-         
-              VipNo.setSelected(true);
-         
-         
-         }
-      
-      
-        if(rs.getString("garaje")=="None") {
-         GarajeNone.setSelected(true);
-         
-         
-         } else if (rs.getString("garaje")=="true"){
-         
-             GarajeSi.setSelected(true);
-         
-         
-         }
-         else if (rs.getString("garaje")=="false"){
-         
-              GarajeNo.setSelected(true);
-         
-         
-         }
-      
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                textFieldDNI.setText(rs.getString("dni"));
+                textFieldNombre.setText(rs.getString("nombre"));
+                textFieldTelefono.setText(rs.getString("telefono"));
+                textFieldDireccion.setText(rs.getString("direccion"));
+                textFieldCorreo.setText(rs.getString("correoElectronico"));
+                textFieldNHabitacion.setText(rs.getString("numeroHabitacion"));
+
+                if ("Normal".equals(rs.getString("tipoHabitacion"))) {
+                    comboBoxTHab.setSelectedItem("Normal");
+
+                } else if ("Suit".equals(rs.getString("tipoHabitacion"))) {
+
+                    comboBoxTHab.setSelectedItem("Suit");
+
+                } else if ("Dúplex".equals(rs.getString("tipoHabitacion"))) {
+
+                    comboBoxTHab.setSelectedItem("Dúplex");
+
+                }
+
+                if ("Individual".equals(rs.getString("tipoCamas"))) {
+                    comboBoxTCamas.setSelectedItem("Individual");
+
+                } else if ("Doble".equals(rs.getString("tipoCamas"))) {
+
+                    comboBoxTCamas.setSelectedItem("Doble");
+
+                } else if ("Matrimonio".equals(rs.getString("tipoCamas"))) {
+
+                    comboBoxTCamas.setSelectedItem("Matrimonio");
+
+                } else if ("Triple".equals(rs.getString("tipoCamas"))) {
+
+                    comboBoxTCamas.setSelectedItem("Triple");
+
+                } else if ("Cama de agua".equals(rs.getString("tipoCamas"))) {
+
+                    comboBoxTCamas.setSelectedItem("Cama de agua");
+
+                }
+
+                if ("None".equals(rs.getString("vip"))) {
+                    VipNone.setSelected(true);
+
+                } else if ("true".equals(rs.getString("vip"))) {
+
+                    VipSi.setSelected(true);
+
+                } else if ("false".equals(rs.getString("vip"))) {
+
+                    VipNo.setSelected(true);
+
+                }
+
+                if ("None".equals(rs.getString("garaje"))) {
+                    GarajeNone.setSelected(true);
+
+                } else if ("true".equals(rs.getString("garaje"))) {
+
+                    GarajeSi.setSelected(true);
+
+                } else if ("false".equals(rs.getString("garaje"))) {
+
+                    GarajeNo.setSelected(true);
+
+                }
+
             }
         } catch (SQLException ex) {
             System.out.println(ex);
@@ -460,9 +448,8 @@ public class ModificarReservas extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_comboBoxTHabActionPerformed
 
-    
-     public void llenarTabla(){
-       /* DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+    public void llenarTabla() {
+        /* DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
         Object rowDatos[] = new Object[11];
         for(int i = 0;i <reservas.size();i++){
             rowDatos[0]= reservas.get(i).getDni();
@@ -478,46 +465,37 @@ public class ModificarReservas extends javax.swing.JFrame {
             modelo.addRow(rowDatos);
 
         }  
-*/
-       Connection con = null;
-        try{
-            
+         */
+        Connection con = null;
+        try {
+
             //base de datos
             con = Conexion.establecerConexionBD();
-            ps = (PreparedStatement)con.prepareStatement("SELECT * FROM reservas");
+            ps = (PreparedStatement) con.prepareStatement("SELECT * FROM reservas");
             ResultSet rs = ps.executeQuery();
-            
+
             //tabla
-            
             modelo = (DefaultTableModel) tablaDatos.getModel();
-           
+
             int cantidadColl = rs.getMetaData().getColumnCount();
-            while(rs.next()){
+            while (rs.next()) {
                 Object rowDatos[] = new Object[cantidadColl];
-                for(int i=0;i<cantidadColl;i++){
-                    rowDatos[i]= rs.getString(i+1);
+                for (int i = 0; i < cantidadColl; i++) {
+                    rowDatos[i] = rs.getString(i + 1);
                 }
                 modelo.addRow(rowDatos);
             }
-    }catch(SQLException ex){
-        System.out.println(ex);
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+
     }
-    
-}
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
     /**
      * @param args the command line arguments
      */
     public static void modificarReservas() {
-  
+
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new ModificarReservas().setVisible(true);
@@ -532,12 +510,13 @@ public class ModificarReservas extends javax.swing.JFrame {
     private javax.swing.JRadioButton VipNo;
     private javax.swing.JRadioButton VipNone;
     private javax.swing.JRadioButton VipSi;
+    private javax.swing.JButton botonModificar;
     private javax.swing.JComboBox<String> comboBoxTCamas;
     private javax.swing.JComboBox<String> comboBoxTHab;
     private javax.swing.ButtonGroup grupoGaraje;
     private javax.swing.ButtonGroup grupoVip;
-    private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel labelCorreo;
     private javax.swing.JLabel labelDir;
     private javax.swing.JLabel labelDni;

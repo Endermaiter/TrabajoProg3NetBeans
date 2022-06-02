@@ -35,7 +35,7 @@ public class Menu extends javax.swing.JFrame {
         modificarReservaButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(51, 51, 51));
         setLocation(new java.awt.Point(0, 0));
         setPreferredSize(new java.awt.Dimension(1820, 800));
@@ -127,8 +127,11 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_eliminarReservaButtonActionPerformed
 
     private void logOutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logOutButtonActionPerformed
-        this.dispose();
-        Menu_Login.login();
+        int opcion = JOptionPane.showConfirmDialog(null,"¿Está seguro de que desea cerrar sesión?","Cerrar Sesión",JOptionPane.YES_NO_OPTION);
+        if(opcion == JOptionPane.YES_OPTION){
+            this.dispose();
+            Menu_Login.login();
+        } 
     }//GEN-LAST:event_logOutButtonActionPerformed
 
     private void insertarReservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insertarReservaActionPerformed
