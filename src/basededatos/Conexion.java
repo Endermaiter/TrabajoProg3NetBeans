@@ -15,7 +15,7 @@ import java.sql.DriverManager;
  */
 public class Conexion {
     
-    public static final String url = "jdbc:mysql://localhost:3307/trabajoprog";
+    public static final String url = "jdbc:mysql://localhost:3306/trabajoprog";
    public static final String userName = "root";
    public static final String password = "marcosydavid1.";
    
@@ -25,9 +25,8 @@ public class Conexion {
        try{
            Class.forName("com.mysql.cj.jdbc.Driver");
            con = (Connection) DriverManager.getConnection(url,userName,password);
-           System.out.println("Conexión Establecida");
        }catch(Exception e){
-           System.out.println("e");
+           System.out.println(e);
        }
        return con;
    }
