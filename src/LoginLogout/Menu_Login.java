@@ -123,14 +123,17 @@ public class Menu_Login extends javax.swing.JFrame {
         String busquedaUsuario = metodos.LogIn(textFieldUsuario.getText(), textFieldPassword.getText());
        
         if(textFieldUsuario.getText().equals("admin")&& textFieldPassword.getText().equals("admin")){
-            JOptionPane.showMessageDialog(this,"¡Bienvenido (Administrador)!");
+            this.dispose();
+            JOptionPane.showMessageDialog(this,"¡Bienvenido (Administrador)!"); 
             Menu.menu();
         }else if(busquedaUsuario.equals("usuario encontrado")){
-            JOptionPane.showMessageDialog(this, "¡Sesión iniciada con éxito!");
             this.dispose();
+            JOptionPane.showMessageDialog(this, "¡Sesión iniciada con éxito!"); 
             Menu.menu();
         }else{
             JOptionPane.showMessageDialog(this, "No se ha encontrado al usuario. Inténtelo de nuevo");
+            textFieldUsuario.setText("");
+            textFieldPassword.setText("");
         }
     }//GEN-LAST:event_botonLoginActionPerformed
 
