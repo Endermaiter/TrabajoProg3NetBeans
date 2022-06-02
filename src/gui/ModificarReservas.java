@@ -112,6 +112,11 @@ public class ModificarReservas extends javax.swing.JFrame {
         labelGaraje.setText("Garaje:");
 
         comboBoxTHab.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione una opción", "Normal", "Suit", "Duplex" }));
+        comboBoxTHab.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboBoxTHabActionPerformed(evt);
+            }
+        });
 
         comboBoxTCamas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione una opción", "Individual", "Doble", "Matrimonio", "Triple", "Cama de agua" }));
 
@@ -311,7 +316,7 @@ public class ModificarReservas extends javax.swing.JFrame {
          
          
          }
-          ps.setString(10,textFieldDNI.getText());
+          ps.setString(11,textFieldDNI.getText());
             ps.executeUpdate();
             
             //tabla
@@ -361,38 +366,99 @@ public class ModificarReservas extends javax.swing.JFrame {
            ResultSet rs = ps.executeQuery();
             
             if(rs.next()){
-                ps.setString(1,textFieldDNI.getText());
-            ps.setString(2, textFieldNombre.getText());
-            ps.setInt(3, Integer.valueOf(textFieldTelefono.getText()) );
-          ps.setString(4,textFieldDireccion.getText());
-          ps.setString(5,textFieldCorreo.getText());
-          ps.setInt(6,Integer.valueOf(textFieldNHabitacion.getText()) );
-          ps.setString(7,comboBoxTHab.getSelectedItem().toString());
-        ps.setString(8,comboBoxTCamas.getSelectedItem().toString());
+           textFieldDNI.setText(rs.getString("dni"));
+         textFieldNombre.setText(rs.getString("nombre"));
+           textFieldTelefono.setText(rs.getString("telefono"));
+       textFieldDireccion.setText(rs.getString("direccion"));
+         textFieldCorreo.setText(rs.getString("correoElectronico"));
+         textFieldNHabitacion.setText(rs.getString("numeroHabitacion"));
+         if(rs.getString("tipoHabitacion")=="Normal") {
+         comboBoxTHab.setSelectedIndex(1);
          
-        if(VipNone.isSelected()){
-             ps.setString(9,VipNone.getLabel());
-        }else if(VipSi.isSelected()){
-             ps.setString(  9,VipSi.getLabel());
-        }else if(VipNo.isSelected()){
-            ps.setString(9,VipNo.getLabel()); 
-        }
-      
-        if(GarajeNone.isSelected()){
-            ps.setString(10,GarajeNone.getLabel());
-        }else if(GarajeSi.isSelected()){
-            ps.setString(10,GarajeSi.getLabel());
-        }else if(GarajeNo.isSelected()){
-           ps.setString(10,GarajeNo.getLabel());
-        
+         
+         } else if (rs.getString("tipoHabitacion")=="Suit"){
+         
+             comboBoxTHab.setSelectedIndex(2);
+         
+         
+         } else if (rs.getString("tipoHabitacion")=="Dúplex"){
+         
+             comboBoxTHab.setSelectedIndex(3);
+         
+         
+         } 
+         
+          if(rs.getString("tipoCamas")=="Individual") {
+         comboBoxTCamas.setSelectedIndex(1);
+         
+         
+         } else if (rs.getString("tipoCamas")=="Doble"){
+         
+             comboBoxTCamas.setSelectedIndex(2);
+         
+         
+         }  else if (rs.getString("tipoCamas")=="Matrimonio"){
+         
+             comboBoxTCamas.setSelectedIndex(3);
+         
+         } else if (rs.getString("tipoCamas")=="Triple"){
+         
+             comboBoxTCamas.setSelectedIndex(4);
+         
+         }
+          else if (rs.getString("tipoCamas")=="Cama de agua"){
+         
+             comboBoxTCamas.setSelectedIndex(5);
+         
+         }
+         
+         
+         
+    
+      if(rs.getString("vip")=="None") {
+         VipNone.setSelected(true);
+         
+         
+         } else if (rs.getString("vip")=="true"){
+         
+             VipSi.setSelected(true);
          
          
          }
+         else if (rs.getString("vip")=="false"){
+         
+              VipNo.setSelected(true);
+         
+         
+         }
+      
+      
+        if(rs.getString("garaje")=="None") {
+         GarajeNone.setSelected(true);
+         
+         
+         } else if (rs.getString("garaje")=="true"){
+         
+             GarajeSi.setSelected(true);
+         
+         
+         }
+         else if (rs.getString("garaje")=="false"){
+         
+              GarajeNo.setSelected(true);
+         
+         
+         }
+      
             }
         } catch (SQLException ex) {
             System.out.println(ex);
         }
     }//GEN-LAST:event_tablaDatosMouseClicked
+
+    private void comboBoxTHabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxTHabActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboBoxTHabActionPerformed
 
     
      public void llenarTabla(){

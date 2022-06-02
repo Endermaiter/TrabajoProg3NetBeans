@@ -32,6 +32,7 @@ public class Menu extends javax.swing.JFrame {
         eliminarReservaButton = new javax.swing.JButton();
         logOutButton = new javax.swing.JButton();
         salirButton = new javax.swing.JButton();
+        modificarReservaButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -49,7 +50,7 @@ public class Menu extends javax.swing.JFrame {
             }
         });
         panel1.add(insertarReserva);
-        insertarReserva.setBounds(130, 20, 295, 68);
+        insertarReserva.setBounds(120, 20, 295, 68);
 
         mostrarReservasButton.setText("Mostrar Reservas");
         mostrarReservasButton.addActionListener(new java.awt.event.ActionListener() {
@@ -58,7 +59,7 @@ public class Menu extends javax.swing.JFrame {
             }
         });
         panel1.add(mostrarReservasButton);
-        mostrarReservasButton.setBounds(470, 20, 149, 68);
+        mostrarReservasButton.setBounds(440, 20, 149, 68);
 
         eliminarReservaButton.setText("Eliminar Reserva");
         eliminarReservaButton.addActionListener(new java.awt.event.ActionListener() {
@@ -67,7 +68,7 @@ public class Menu extends javax.swing.JFrame {
             }
         });
         panel1.add(eliminarReservaButton);
-        eliminarReservaButton.setBounds(680, 20, 188, 68);
+        eliminarReservaButton.setBounds(750, 20, 188, 68);
 
         logOutButton.setText("Cerrar Sesión");
         logOutButton.addActionListener(new java.awt.event.ActionListener() {
@@ -76,7 +77,7 @@ public class Menu extends javax.swing.JFrame {
             }
         });
         panel1.add(logOutButton);
-        logOutButton.setBounds(910, 20, 162, 68);
+        logOutButton.setBounds(970, 20, 162, 68);
 
         salirButton.setText("Salir");
         salirButton.addActionListener(new java.awt.event.ActionListener() {
@@ -85,11 +86,20 @@ public class Menu extends javax.swing.JFrame {
             }
         });
         panel1.add(salirButton);
-        salirButton.setBounds(1130, 20, 145, 68);
+        salirButton.setBounds(1170, 20, 145, 68);
+
+        modificarReservaButton.setText("Modificar Reserva");
+        modificarReservaButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                modificarReservaButtonActionPerformed(evt);
+            }
+        });
+        panel1.add(modificarReservaButton);
+        modificarReservaButton.setBounds(600, 20, 140, 70);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/fondoMenu.jpg"))); // NOI18N
         panel1.add(jLabel1);
-        jLabel1.setBounds(0, 0, 1880, 970);
+        jLabel1.setBounds(0, 10, 1880, 970);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -137,6 +147,10 @@ public class Menu extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_salirButtonActionPerformed
 
+    private void modificarReservaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarReservaButtonActionPerformed
+       ModificarReservas.modificarReservas();
+    }//GEN-LAST:event_modificarReservaButtonActionPerformed
+
     
     public static void menu() {
         /* Set the Nimbus look and feel */
@@ -177,6 +191,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JButton insertarReserva;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JButton logOutButton;
+    private javax.swing.JButton modificarReservaButton;
     private javax.swing.JButton mostrarReservasButton;
     private javax.swing.JPanel panel1;
     private javax.swing.JButton salirButton;
