@@ -4,7 +4,6 @@
  */
 package gui;
 
-import basededatos.Conexion;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import javax.swing.table.DefaultTableModel;
@@ -13,23 +12,20 @@ import java.sql.*;
 import java.sql.ResultSet;
 import javax.swing.RowFilter;
 import javax.swing.table.TableRowSorter;
+import libreriatrabajoprog.Libreria;
 
 
-/**
- *
- * @author Endermaiter
- */
 public class MostrarReservas extends javax.swing.JFrame {
-PreparedStatement ps = null;
-DefaultTableModel modelo ;
-ResultSet rs ;
-TableRowSorter trs;
-    /**
-     * Creates new form MostrarReservas
-     */
+
+    PreparedStatement ps = null;
+    DefaultTableModel modelo;
+    ResultSet rs;
+    TableRowSorter trs;
+
+    
     public MostrarReservas() {
         initComponents();
-        llenarTabla();
+        Libreria.llenarTabla(tablaDatos);
     }
 
     /**
@@ -118,17 +114,16 @@ TableRowSorter trs;
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtBuscarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyTyped
-        txtBuscar.addKeyListener(new KeyAdapter(){
+        txtBuscar.addKeyListener(new KeyAdapter() {
             @Override
-            public void keyReleased(KeyEvent ke){
-                trs.setRowFilter(RowFilter.regexFilter(txtBuscar.getText(),0,1,2,3,4,5,6,7,8,9));
+            public void keyReleased(KeyEvent ke) {
+                trs.setRowFilter(RowFilter.regexFilter(txtBuscar.getText(), 0, 1, 2, 3, 4, 5, 6, 7, 8, 9));
             }
         });
         trs = new TableRowSorter(modelo);
         tablaDatos.setRowSorter(trs);
     }//GEN-LAST:event_txtBuscarKeyTyped
 
-    
     public static void mostrarReservas() {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -158,37 +153,34 @@ TableRowSorter trs;
             new MostrarReservas().setVisible(true);
         });
     }
-    
-    
-    
-   public void llenarTabla(){
-       
-       Connection con = null;
-        try{
-            
+
+    public void llenarTabla() {
+
+        Connection con = null;
+        try {
+
             //base de datos
-            con = Conexion.establecerConexionBD();
-            ps = (PreparedStatement)con.prepareStatement("SELECT * FROM reservas");
+            con = Libreria.establecerConexionBD();
+            ps = (PreparedStatement) con.prepareStatement("SELECT * FROM reservas");
             rs = ps.executeQuery();
-            
+
             //tabla
-            
             modelo = (DefaultTableModel) tablaDatos.getModel();
-           
+
             int cantidadColl = rs.getMetaData().getColumnCount();
-            while(rs.next()){
+            while (rs.next()) {
                 Object rowDatos[] = new Object[cantidadColl];
-                for(int i=0;i<cantidadColl;i++){
-                    rowDatos[i]= rs.getString(i+1);
+                for (int i = 0; i < cantidadColl; i++) {
+                    rowDatos[i] = rs.getString(i + 1);
                 }
                 modelo.addRow(rowDatos);
             }
-    }catch(SQLException ex){
-        System.out.println(ex);
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+
     }
-    
-}
-    
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;

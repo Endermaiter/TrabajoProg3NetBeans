@@ -1,16 +1,12 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package gui;
 
-import basededatos.Conexion;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import libreriatrabajoprog.Libreria;
 
 /**
  *
@@ -23,7 +19,7 @@ public class ModificarReservas extends javax.swing.JFrame {
 
     public ModificarReservas() {
         initComponents();
-        llenarTabla();
+        Libreria.llenarTabla(tablaDatos);
     }
 
     /**
@@ -113,11 +109,6 @@ public class ModificarReservas extends javax.swing.JFrame {
         labelGaraje.setText("Garaje:");
 
         comboBoxTHab.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione una opción", "Normal", "Suit", "Dúplex" }));
-        comboBoxTHab.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comboBoxTHabActionPerformed(evt);
-            }
-        });
 
         comboBoxTCamas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione una opción", "Individual", "Doble", "Matrimonio", "Triple", "Cama de agua" }));
 
@@ -295,7 +286,7 @@ public class ModificarReservas extends javax.swing.JFrame {
         try {
 
             //Base de Datos    
-            con = Conexion.establecerConexionBD();
+            con = Libreria.establecerConexionBD();
             ps = (PreparedStatement) con.prepareStatement("UPDATE reservas SET dni=?,nombre=?,telefono=?, direccion=?,correoElectronico=?,numeroHabitacion=?,tipoHabitacion=?,tipoCamas=?, vip=?,garaje=? WHERE dni=?");
             ps.setString(1, textFieldDNI.getText());
             ps.setString(2, textFieldNombre.getText());
@@ -363,7 +354,7 @@ public class ModificarReservas extends javax.swing.JFrame {
 
         Connection con = null;
         try {
-            con = Conexion.establecerConexionBD();
+            con = Libreria.establecerConexionBD();
             int fila = tablaDatos.getSelectedRow();
             String codigo = tablaDatos.getValueAt(fila, 0).toString();
             ps = (PreparedStatement) con.prepareStatement("SELECT dni,nombre,telefono,direccion,correoElectronico,numeroHabitacion,tipoHabitacion,tipoCamas, vip,garaje FROM reservas  WHERE dni=?");
@@ -444,56 +435,6 @@ public class ModificarReservas extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_tablaDatosMouseClicked
 
-    private void comboBoxTHabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxTHabActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_comboBoxTHabActionPerformed
-
-    public void llenarTabla() {
-        /* DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
-        Object rowDatos[] = new Object[11];
-        for(int i = 0;i <reservas.size();i++){
-            rowDatos[0]= reservas.get(i).getDni();
-            rowDatos[1]= reservas.get(i).getNombre();
-            rowDatos[2]= reservas.get(i).getTelefono();
-            rowDatos[3]= reservas.get(i).getDireccion();
-            rowDatos[4]= reservas.get(i).getCorreoElectronico();
-            rowDatos[5]= reservas.get(i).getNumeroHabitacion();
-            rowDatos[6]= reservas.get(i).getTipoHabitacion();
-            rowDatos[7]= reservas.get(i).getTipoCamas();
-            rowDatos[8]= reservas.get(i).getVip();
-            rowDatos[9]= reservas.get(i).getGaraje();
-            modelo.addRow(rowDatos);
-
-        }  
-         */
-        Connection con = null;
-        try {
-
-            //base de datos
-            con = Conexion.establecerConexionBD();
-            ps = (PreparedStatement) con.prepareStatement("SELECT * FROM reservas");
-            ResultSet rs = ps.executeQuery();
-
-            //tabla
-            modelo = (DefaultTableModel) tablaDatos.getModel();
-
-            int cantidadColl = rs.getMetaData().getColumnCount();
-            while (rs.next()) {
-                Object rowDatos[] = new Object[cantidadColl];
-                for (int i = 0; i < cantidadColl; i++) {
-                    rowDatos[i] = rs.getString(i + 1);
-                }
-                modelo.addRow(rowDatos);
-            }
-        } catch (SQLException ex) {
-            System.out.println(ex);
-        }
-
-    }
-
-    /**
-     * @param args the command line arguments
-     */
     public static void modificarReservas() {
 
         java.awt.EventQueue.invokeLater(new Runnable() {

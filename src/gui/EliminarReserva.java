@@ -4,21 +4,24 @@
  */
 package gui;
 
-import basededatos.Conexion;
 import javax.swing.JOptionPane;
 import java.sql.*;
 import javax.swing.table.DefaultTableModel;
+import libreriatrabajoprog.Libreria;
+
 /**
  *
  * @author David
  */
 public class EliminarReserva extends javax.swing.JFrame {
-  PreparedStatement ps = null;
-DefaultTableModel modelo ;
+
+    PreparedStatement ps = null;
+    DefaultTableModel modelo;
+
     public EliminarReserva() {
-        
+
         initComponents();
-     llenarTabla () ;
+        Libreria.llenarTabla(tablaDatos);
     }
 
     /**
@@ -89,38 +92,35 @@ DefaultTableModel modelo ;
     }// </editor-fold>//GEN-END:initComponents
 
     private void botoneliminarReservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botoneliminarReservaActionPerformed
-        int opcion = JOptionPane.showConfirmDialog(null,"¿Está seguro de que desea eliminar la reserva?","Confirmacion de eliminar",JOptionPane.YES_NO_OPTION);
-        if(opcion == JOptionPane.YES_OPTION){
+        int opcion = JOptionPane.showConfirmDialog(null, "¿Está seguro de que desea eliminar la reserva?", "Confirmacion de eliminar", JOptionPane.YES_NO_OPTION);
+        if (opcion == JOptionPane.YES_OPTION) {
             Connection con = null;
-            try{
-            
-            //conexion base de datos    
-            
-            con = Conexion.establecerConexionBD();
-            
-            int fila = tablaDatos.getSelectedRow();
-            String codigo = tablaDatos.getValueAt(fila, 0).toString();
-            
-            ps = (PreparedStatement) con.prepareStatement("DELETE FROM reservas WHERE DNI=?");
-            ps.setString(1,codigo);
-            ps.execute();
-            
-            //tabla
-            
-           
-            modelo.removeRow(fila);
-            
-            JOptionPane.showMessageDialog(null,"¡Producto Eliminado!");
-          
-            con.close();
-            }catch(SQLException e){
+            try {
+
+                //conexion base de datos    
+                con = Libreria.establecerConexionBD();
+
+                int fila = tablaDatos.getSelectedRow();
+                String codigo = tablaDatos.getValueAt(fila, 0).toString();
+
+                ps = (PreparedStatement) con.prepareStatement("DELETE FROM reservas WHERE DNI=?");
+                ps.setString(1, codigo);
+                ps.execute();
+
+                //tabla
+                modelo.removeRow(fila);
+
+                JOptionPane.showMessageDialog(null, "¡Producto Eliminado!");
+
+                con.close();
+            } catch (SQLException e) {
                 System.out.println(e);
-         }
+            }
         }
     }//GEN-LAST:event_botoneliminarReservaActionPerformed
 
     /**
- 
+     *
      */
     public static void eliminarReserva() {
         /* Set the Nimbus look and feel */
@@ -154,53 +154,7 @@ DefaultTableModel modelo ;
         });
     }
 
-    
-    public void llenarTabla(){
-       /* DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
-        Object rowDatos[] = new Object[11];
-        for(int i = 0;i <reservas.size();i++){
-            rowDatos[0]= reservas.get(i).getDni();
-            rowDatos[1]= reservas.get(i).getNombre();
-            rowDatos[2]= reservas.get(i).getTelefono();
-            rowDatos[3]= reservas.get(i).getDireccion();
-            rowDatos[4]= reservas.get(i).getCorreoElectronico();
-            rowDatos[5]= reservas.get(i).getNumeroHabitacion();
-            rowDatos[6]= reservas.get(i).getTipoHabitacion();
-            rowDatos[7]= reservas.get(i).getTipoCamas();
-            rowDatos[8]= reservas.get(i).getVip();
-            rowDatos[9]= reservas.get(i).getGaraje();
-            modelo.addRow(rowDatos);
 
-        }  
-*/
-       Connection con = null;
-        try{
-            
-            //base de datos
-            con = Conexion.establecerConexionBD();
-            ps = (PreparedStatement)con.prepareStatement("SELECT * FROM reservas");
-            ResultSet rs = ps.executeQuery();
-            
-            //tabla
-            
-            modelo = (DefaultTableModel) tablaDatos.getModel();
-           
-            int cantidadColl = rs.getMetaData().getColumnCount();
-            while(rs.next()){
-                Object rowDatos[] = new Object[cantidadColl];
-                for(int i=0;i<cantidadColl;i++){
-                    rowDatos[i]= rs.getString(i+1);
-                }
-                modelo.addRow(rowDatos);
-            }
-    }catch(SQLException ex){
-        System.out.println(ex);
-    }
-    
-}
-    
-    
-    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botoneliminarReserva;
     private javax.swing.JScrollPane jScrollPane1;

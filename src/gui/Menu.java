@@ -1,7 +1,6 @@
 package gui;
 
 import LoginLogout.Menu_Login;
-import clases.ArrayMethods;
 import clases.Cliente;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -11,11 +10,11 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class Menu extends javax.swing.JFrame {
-    
-    ArrayList<Cliente>listadoReservas = new ArrayList<>();
+
+    ArrayList<Cliente> listadoReservas = new ArrayList<>();
 
     ImagenFondo imagen = new ImagenFondo();
-    
+
     public Menu() {
         super("RESERVAS DEL HOTEL");
         this.setContentPane(imagen);
@@ -119,19 +118,18 @@ public class Menu extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    
-    
+
     private void eliminarReservaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarReservaButtonActionPerformed
         //ArrayMethods.eliminarReservas(listadoReservas);
         EliminarReserva.eliminarReserva();
     }//GEN-LAST:event_eliminarReservaButtonActionPerformed
 
     private void logOutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logOutButtonActionPerformed
-        int opcion = JOptionPane.showConfirmDialog(null,"¿Está seguro de que desea cerrar sesión?","Cerrar Sesión",JOptionPane.YES_NO_OPTION);
-        if(opcion == JOptionPane.YES_OPTION){
+        int opcion = JOptionPane.showConfirmDialog(null, "¿Está seguro de que desea cerrar sesión?", "Cerrar Sesión", JOptionPane.YES_NO_OPTION);
+        if (opcion == JOptionPane.YES_OPTION) {
             this.dispose();
             Menu_Login.login();
-        } 
+        }
     }//GEN-LAST:event_logOutButtonActionPerformed
 
     private void insertarReservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insertarReservaActionPerformed
@@ -144,17 +142,16 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_mostrarReservasButtonActionPerformed
 
     private void salirButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirButtonActionPerformed
-        int opcion = JOptionPane.showConfirmDialog(null,"¿Está seguro de que desea cerrar la aplicacion?","Cerrar Apliación",JOptionPane.YES_NO_OPTION);
-        if(opcion == JOptionPane.YES_OPTION){
+        int opcion = JOptionPane.showConfirmDialog(null, "¿Está seguro de que desea cerrar la aplicacion?", "Cerrar Apliación", JOptionPane.YES_NO_OPTION);
+        if (opcion == JOptionPane.YES_OPTION) {
             System.exit(0);
         }
     }//GEN-LAST:event_salirButtonActionPerformed
 
     private void modificarReservaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarReservaButtonActionPerformed
-       ModificarReservas.modificarReservas();
+        ModificarReservas.modificarReservas();
     }//GEN-LAST:event_modificarReservaButtonActionPerformed
 
-    
     public static void menu() {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -185,7 +182,7 @@ public class Menu extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
             new Menu().setVisible(true);
-            
+
         });
     }
 
@@ -200,16 +197,16 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JButton salirButton;
     // End of variables declaration//GEN-END:variables
 
-class ImagenFondo extends JPanel{
-    
-    private Image imagen;
-    
-    public void ImagenDeFondoMenu(Graphics g){
-        imagen = new ImageIcon(getClass().getResource("fondoMenu.jpg")).getImage();
-        g.drawImage(imagen, 0, 0, getWidth(), HEIGHT, this);
-        setOpaque(false);
-        super.paint(g);
+    class ImagenFondo extends JPanel {
+
+        private Image imagen;
+
+        public void ImagenDeFondoMenu(Graphics g) {
+            imagen = new ImageIcon(getClass().getResource("fondoMenu.jpg")).getImage();
+            g.drawImage(imagen, 0, 0, getWidth(), HEIGHT, this);
+            setOpaque(false);
+            super.paint(g);
+        }
     }
-}
 
 }
