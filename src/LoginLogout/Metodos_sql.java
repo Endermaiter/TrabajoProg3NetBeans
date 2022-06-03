@@ -3,7 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package LoginLogout;
-import basededatos.Conexion;
 import java.sql.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
