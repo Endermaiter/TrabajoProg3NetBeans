@@ -7,6 +7,7 @@ import basededatos.Conexion;
 import java.sql.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import libreriatrabajoprog.Libreria;
 
 
 public class Metodos_sql {
@@ -22,7 +23,7 @@ public class Metodos_sql {
         Connection conexion = null;
         String insert = "INSERT INTO usuarios(nombre,apellidos,correo,contraseña) VALUES(?,?,?,?)";
         
-        conexion = Conexion.establecerConexionBD();
+        conexion = Libreria.establecerConexionBD();
         try {
             sentencia_preparada = (PreparedStatement) conexion.prepareStatement(insert);
             sentencia_preparada.setString(1, nombre);
@@ -42,7 +43,7 @@ public class Metodos_sql {
         String busquedaUsuario = null;
         Connection conexion = null;
         try{
-            conexion = Conexion.establecerConexionBD();
+            conexion = Libreria.establecerConexionBD();
             String buscarUsuario = ("SELECT nombre, correo, contraseña FROM usuarios WHERE correo ='"+correo+"' && contraseña = '"+contraseña+"'");
             sentencia_preparada = (PreparedStatement) conexion.prepareStatement(buscarUsuario);
             resultado = sentencia_preparada.executeQuery();
