@@ -212,6 +212,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="registrarReservaButton">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/images/a&#xf1;adir2.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="REGISTRAR"/>
           </Properties>
         </Component>

@@ -37,11 +37,11 @@ public class Menu extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(51, 51, 51));
         setLocation(new java.awt.Point(0, 0));
-        setPreferredSize(new java.awt.Dimension(1820, 800));
-        setResizable(false);
+        setPreferredSize(new java.awt.Dimension(1500, 800));
 
         panel1.setLayout(null);
 
+        insertarReserva.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/añadirReserva.png"))); // NOI18N
         insertarReserva.setText("Añadir Reserva");
         insertarReserva.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -49,8 +49,9 @@ public class Menu extends javax.swing.JFrame {
             }
         });
         panel1.add(insertarReserva);
-        insertarReserva.setBounds(120, 20, 295, 68);
+        insertarReserva.setBounds(120, 20, 180, 68);
 
+        mostrarReservasButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mostrarReservas.png"))); // NOI18N
         mostrarReservasButton.setText("Mostrar Reservas");
         mostrarReservasButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -58,8 +59,9 @@ public class Menu extends javax.swing.JFrame {
             }
         });
         panel1.add(mostrarReservasButton);
-        mostrarReservasButton.setBounds(440, 20, 149, 68);
+        mostrarReservasButton.setBounds(330, 20, 190, 68);
 
+        eliminarReservaButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/eliminar.png"))); // NOI18N
         eliminarReservaButton.setText("Eliminar Reserva");
         eliminarReservaButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -67,8 +69,9 @@ public class Menu extends javax.swing.JFrame {
             }
         });
         panel1.add(eliminarReservaButton);
-        eliminarReservaButton.setBounds(750, 20, 188, 68);
+        eliminarReservaButton.setBounds(780, 20, 188, 68);
 
+        logOutButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/cerrarSesion.png"))); // NOI18N
         logOutButton.setText("Cerrar Sesión");
         logOutButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -76,8 +79,9 @@ public class Menu extends javax.swing.JFrame {
             }
         });
         panel1.add(logOutButton);
-        logOutButton.setBounds(970, 20, 162, 68);
+        logOutButton.setBounds(990, 20, 167, 68);
 
+        salirButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/salir.png"))); // NOI18N
         salirButton.setText("Salir");
         salirButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -85,8 +89,9 @@ public class Menu extends javax.swing.JFrame {
             }
         });
         panel1.add(salirButton);
-        salirButton.setBounds(1170, 20, 145, 68);
+        salirButton.setBounds(1190, 20, 145, 68);
 
+        modificarReservaButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/modificarReserva.png"))); // NOI18N
         modificarReservaButton.setText("Modificar Reserva");
         modificarReservaButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -94,17 +99,17 @@ public class Menu extends javax.swing.JFrame {
             }
         });
         panel1.add(modificarReservaButton);
-        modificarReservaButton.setBounds(600, 20, 140, 70);
+        modificarReservaButton.setBounds(550, 20, 200, 70);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/fondoMenu.jpg"))); // NOI18N
         panel1.add(jLabel1);
-        jLabel1.setBounds(0, 10, 1880, 970);
+        jLabel1.setBounds(-240, -90, 1880, 970);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1792, Short.MAX_VALUE)
+            .addComponent(panel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1392, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

@@ -97,6 +97,7 @@ public class Registro extends javax.swing.JFrame {
 
         panel2.setPreferredSize(new java.awt.Dimension(400, 600));
 
+        registrarReservaButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/añadir2.png"))); // NOI18N
         registrarReservaButton.setText("REGISTRAR");
 
         labelDni.setText("Dni:");
