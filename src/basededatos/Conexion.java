@@ -14,7 +14,7 @@ import java.sql.DriverManager;
  * @author David
  */
 public class Conexion {
-    
+    /*
     public static final String url = "jdbc:mysql://localhost:3306/trabajoprog";
    public static final String userName = "root";
    public static final String password = "marcosydavid1.";
@@ -30,4 +30,5 @@ public class Conexion {
        }
        return con;
    }
+*/
 }
