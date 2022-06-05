@@ -4,9 +4,9 @@ import LoginLogout.Metodos_sql;
 import javax.swing.JOptionPane;
 
 public class Menu_Register extends javax.swing.JFrame {
-
+// Clase Registrer, que sirve para registrar un usuario , extiende de JFrame por que usamos GUI
     public Menu_Register() {
-        initComponents();
+        initComponents(); //Composicion de la interfaz grafica
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -121,19 +121,25 @@ public class Menu_Register extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    Metodos_sql metodos = new Metodos_sql();
+    Metodos_sql metodos = new Metodos_sql(); // Objeto que sirve para usar los metodos de la clase, Metodos_sql
     
+    // Evento del boton de registrar.
     private void botonRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegistroActionPerformed
+        
+        //Igualacion de metodo guardar a int.
         int check = metodos.guardar(txtNombre.getText(), txtApellidos.getText(), txtCorreo.getText(), txtContraseña.getText());
+       //Comprobacion de que todos los campos estan cubiertos
         if(check > 0){
             JOptionPane.showMessageDialog(this,"¡Usuario registrado correctamente! ");
-            this.dispose();
+            this.dispose();// Cierra la ventana de registro
         }else{
             JOptionPane.showMessageDialog(this,"Por favor, rellene todos los campos.");
         }
     }//GEN-LAST:event_botonRegistroActionPerformed
 
     public static void RegistroUsuario() {
+        
+         //Metodo que abre la ventana de RegistroUsuario
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -160,7 +166,7 @@ public class Menu_Register extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
-            new Menu_Register().setVisible(true);
+            new Menu_Register().setVisible(true); // Permite que se vea la interfaz de registro.
         });
     }
 
