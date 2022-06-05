@@ -5,6 +5,8 @@ import javax.swing.JOptionPane;
 
 public class Menu_Register extends javax.swing.JFrame {
 // Clase Registrer, que sirve para registrar un usuario , extiende de JFrame por que usamos GUI
+    
+    //constructor de la iterfaz grafica
     public Menu_Register() {
         initComponents(); //Composicion de la interfaz grafica
     }

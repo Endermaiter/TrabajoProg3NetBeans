@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package LoginLogout;
 
 import LoginLogout.Metodos_sql;
@@ -14,6 +10,7 @@ public class Menu_Login extends javax.swing.JFrame {
     
     // Clase Login, que sirve para iniciar sesion, extiende de JFrame por que usamos GUI
     
+    //constructor de la iterfaz grafica
     public Menu_Login() {
         initComponents(); //Composicion de la interfaz grafica
     }
@@ -48,12 +45,6 @@ public class Menu_Login extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(204, 204, 204));
         jPanel1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        textFieldPassword.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textFieldPasswordActionPerformed(evt);
-            }
-        });
-
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/contraseña.png"))); // NOI18N
         jLabel3.setText("Contraseña:");
 
@@ -70,12 +61,6 @@ public class Menu_Login extends javax.swing.JFrame {
         botonLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonLoginActionPerformed(evt);
-            }
-        });
-
-        textFieldUsuario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textFieldUsuarioActionPerformed(evt);
             }
         });
 
@@ -206,22 +191,13 @@ public class Menu_Login extends javax.swing.JFrame {
             textFieldPassword.setText(""); // Cuadro de texto en blanco
         }
     }//GEN-LAST:event_botonLoginActionPerformed
-
+    
+    //eveto del boton de registro
     private void botonRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegisterActionPerformed
         Menu_Register.RegistroUsuario(); //Boton de registro que lleva al interfaz de registro
     }//GEN-LAST:event_botonRegisterActionPerformed
 
-    private void textFieldUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldUsuarioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textFieldUsuarioActionPerformed
-
-    private void textFieldPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldPasswordActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textFieldPasswordActionPerformed
-
-    /**
-    
-     */
+    //metodo para ejecutar la interfaz
     public static void login() {
         
         //Metodo que abre la ventana de inicio de sesion

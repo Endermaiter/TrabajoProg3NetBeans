@@ -148,9 +148,6 @@
       </Layout>
       <SubComponents>
         <Component class="javax.swing.JPasswordField" name="textFieldPassword">
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textFieldPasswordActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel3">
           <Properties>
@@ -193,9 +190,6 @@
           </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="textFieldUsuario">
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textFieldUsuarioActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="botonRegister">
           <Properties>
