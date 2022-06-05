@@ -155,32 +155,7 @@ public class MostrarReservas extends javax.swing.JFrame {
         });
     }
 
-    public void llenarTabla() {
-
-        Connection con = null;
-        try {
-
-            //base de datos
-            con = Libreria.establecerConexionBD();
-            ps = (PreparedStatement) con.prepareStatement("SELECT * FROM reservas");
-            rs = ps.executeQuery();
-
-            //tabla
-            modelo = (DefaultTableModel) tablaDatos.getModel();
-
-            int cantidadColl = rs.getMetaData().getColumnCount();
-            while (rs.next()) {
-                Object rowDatos[] = new Object[cantidadColl];
-                for (int i = 0; i < cantidadColl; i++) {
-                    rowDatos[i] = rs.getString(i + 1);
-                }
-                modelo.addRow(rowDatos);
-            }
-        } catch (SQLException ex) {
-            System.out.println(ex);
-        }
-
-    }
+ 
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

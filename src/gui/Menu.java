@@ -79,7 +79,7 @@ public class Menu extends javax.swing.JFrame {
             }
         });
         panel1.add(logOutButton);
-        logOutButton.setBounds(990, 20, 167, 68);
+        logOutButton.setBounds(990, 20, 168, 68);
 
         salirButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/salir.png"))); // NOI18N
         salirButton.setText("Salir");
