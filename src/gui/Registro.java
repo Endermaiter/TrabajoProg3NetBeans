@@ -4,52 +4,66 @@ import clases.Cliente;
 import clases.Writing;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
-
+import java.sql.*;
+import libreriatrabajoprog.Libreria;
 
 public class Registro extends javax.swing.JFrame {
     
-    public static void registro(ArrayList<Cliente>reservas) {
+    // Clase Registro, que sirve para registrar reservas tanto en la tabla como en la base de datos, extiende de JFrame por que usamos GUI
+
+    PreparedStatement ps = null; //inicializamos la variale ps, usada mas adelate a la hora de conectar con la base de datos
+
+    //metodo para ejecutar la interfaz
+    public static void registro(ArrayList<Cliente> reservas) {
+        //le damos a este metodo el arraylist reservas de tipo cliete para que este se lo de al contructor
         java.awt.EventQueue.invokeLater(() -> {
-            new Registro(reservas).setVisible(true);
+            new Registro(reservas).setVisible(true);//permite que sea visible
         });
     }
     
-    
-    public Registro(ArrayList<Cliente>reservas) {
-        super("REGISTRO");
-        initComponents();
-    registrarReservaButton.addActionListener((java.awt.event.ActionEvent evt) -> {                                                       
-        String dni = textFieldDNI.getText();
-        String nombre = textFieldNombre.getText();
-        int telefono = Integer.parseInt(textFieldTelefono.getText());
-        String direccion = textFieldDireccion.getText();
-        String correo = textFieldCorreo.getText();
-        int numeroHabitacion = Integer.parseInt(textFieldNHabitacion.getText());
-        String tipoHabtacion = comboBoxTHab.getSelectedItem().toString();
-        String tipoCamas = comboBoxTCamas.getSelectedItem().toString();
+    //constructor de la interfaz grafica
+    public Registro(ArrayList<Cliente> reservas) {
+        super("REGISTRO"); //mensaje de la parte superior de la ventana
+        initComponents(); //Composicion de la interfaz grafica
+        super.setLocationRelativeTo(null); //coloca la ventana en el centro de la pantalla
         
-        String vip = null;
-        if(VipNone.isSelected()){
-            vip = null;
-        }else if(VipSi.isSelected()){
-             vip = "True";
-        }else if(VipNo.isSelected()){
-             vip = "False";
-        }
-        String garaje = null;
-        if(GarajeNone.isSelected()){
-            garaje = null;
-        }else if(GarajeSi.isSelected()){
-             garaje = "True";
-        }else if(GarajeNo.isSelected()){
-             garaje = "False";
-        }
-        
-        Writing write = new Writing();
-        write.escribirReservas(reservas,dni,nombre,telefono,direccion,correo,numeroHabitacion,tipoHabtacion,tipoCamas,vip,garaje);
-        
-        
-        JOptionPane.showMessageDialog(null, "¡Cliente registrado correctamente!");
+        //evento de boton de registro
+        registrarReservaButton.addActionListener((java.awt.event.ActionEvent evt) -> {
+            
+            //recogemos en unas variables los datos introducidos en cada elemento de la GUI
+            
+            String dni = textFieldDNI.getText();
+            String nombre = textFieldNombre.getText();
+            int telefono = Integer.parseInt(textFieldTelefono.getText());
+            String direccion = textFieldDireccion.getText();
+            String correo = textFieldCorreo.getText();
+            int numeroHabitacion = Integer.parseInt(textFieldNHabitacion.getText());
+            String tipoHabtacion = comboBoxTHab.getSelectedItem().toString();
+            String tipoCamas = comboBoxTCamas.getSelectedItem().toString();
+
+            //las variables de los radioButton tienen que ser asignadas mediante condicionales
+            String vip = null;
+            if (VipNone.isSelected()) {
+                vip = null;
+            } else if (VipSi.isSelected()) {
+                vip = "Si";
+            } else if (VipNo.isSelected()) {
+                vip = "No";
+            }
+            String garaje = null;
+            if (GarajeNone.isSelected()) {
+                garaje = null;
+            } else if (GarajeSi.isSelected()) {
+                garaje = "Si";
+            } else if (GarajeNo.isSelected()) {
+                garaje = "No";
+            }
+
+            Writing write = new Writing(); //inicializamos un objeto de tipo writing
+            write.escribirReservas(reservas, dni, nombre, telefono, direccion, correo, numeroHabitacion, tipoHabtacion, tipoCamas, vip, garaje); //llamamos al metodo esceribir reservas, proporcionandole todos los datos recogidos
+            insertarBD(); //llamamos al metodo nsertarBD que introduce la nueva reserva en la base de datos
+
+            JOptionPane.showMessageDialog(null, "¡Cliente registrado correctamente!");//mensaje de confirmacion
         });
     }
 
@@ -89,10 +103,12 @@ public class Registro extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
         setSize(new java.awt.Dimension(400, 600));
 
         panel2.setPreferredSize(new java.awt.Dimension(400, 600));
 
+        registrarReservaButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/añadir2.png"))); // NOI18N
         registrarReservaButton.setText("REGISTRAR");
 
         labelDni.setText("Dni:");
@@ -115,7 +131,7 @@ public class Registro extends javax.swing.JFrame {
 
         labelTHab.setText("Tipo de habitación:");
 
-        comboBoxTHab.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione una opción", "Normal", "Suit", "Duplex" }));
+        comboBoxTHab.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione una opción", "Normal", "Suit", "Dúplex" }));
 
         comboBoxTCamas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione una opción", "Individual", "Doble", "Matrimonio", "Triple", "Cama de agua" }));
 
@@ -268,12 +284,13 @@ public class Registro extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(panel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -308,4 +325,78 @@ public class Registro extends javax.swing.JFrame {
     private javax.swing.JTextField textFieldNombre;
     private javax.swing.JTextField textFieldTelefono;
     // End of variables declaration//GEN-END:variables
+
+    //método que reinicia los elementos, donde se introduce los datos, a su estado inicial
+    private void limpiarCajasRegistro() {
+
+        
+        textFieldDNI.setText("");
+        textFieldNombre.setText("");
+        textFieldTelefono.setText("");
+        textFieldDireccion.setText("");
+        textFieldCorreo.setText("");
+        textFieldNHabitacion.setText("");
+        comboBoxTHab.setSelectedIndex(0);
+        comboBoxTCamas.setSelectedIndex(0);
+        VipNone.setSelected(true);
+        VipSi.setSelected(false);
+        VipNo.setSelected(false);
+        GarajeNone.setSelected(true);
+        GarajeSi.setSelected(false);
+        GarajeNo.setSelected(false);
+    }
+    
+    //metodo para realizar la insercion en la base de datos
+    private void insertarBD() {
+
+        Connection con = null; //inicaliza la conexion con la BD
+        try {
+
+            //Conexion Base de Datos   
+            con = Libreria.establecerConexionBD(); //establece la conexion con la base de datos
+            //instruccion de la inserción de la reserva en la base de datos
+            ps = (PreparedStatement) con.prepareStatement("INSERT INTO reservas(dni,nombre,telefono,direccion,correoElectronico,numeroHabitacion,tipoHabitacion,tipoCamas,vip,garaje) VALUES(?,?,?,?,?,?,?,?,?,?)");
+            //le proporcionamos los valores a la instruccion
+            ps.setString(1, textFieldDNI.getText());
+            ps.setString(2, textFieldNombre.getText());
+            ps.setInt(3, Integer.valueOf(textFieldTelefono.getText()));
+            ps.setString(4, textFieldDireccion.getText());
+            ps.setString(5, textFieldCorreo.getText());
+            ps.setInt(6, Integer.valueOf(textFieldNHabitacion.getText()));
+            ps.setString(7, comboBoxTHab.getSelectedItem().toString());
+            ps.setString(8, comboBoxTCamas.getSelectedItem().toString());
+
+            if (VipNone.isSelected()) {
+                ps.setString(9, VipNone.getLabel());
+
+            } else if (VipSi.isSelected()) {
+                ps.setString(9, VipSi.getLabel());
+
+            } else if (VipNo.isSelected()) {
+                ps.setString(9, VipNo.getLabel());
+            }
+
+            if (GarajeNone.isSelected()) {
+                ps.setString(10, GarajeNone.getLabel());
+
+            } else if (GarajeSi.isSelected()) {
+                ps.setString(10, GarajeSi.getLabel());
+
+            } else if (GarajeNo.isSelected()) {
+                ps.setString(10, GarajeNo.getLabel());
+
+            }
+
+            ps.execute(); //ejecutamos la instruccion
+
+            
+            limpiarCajasRegistro();//llamamos al metodo que reestablece los elementos a su estado original
+            con.close(); //cerramos la conexion
+        } catch (SQLException e) {
+            System.out.println(e);
+            JOptionPane.showMessageDialog(null, "La inserción fue rechazada");//mensaje de rechazo
+        }
+
+    }
+
 }
