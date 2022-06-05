@@ -9,6 +9,7 @@
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="2"/>
+    <Property name="resizable" type="boolean" value="false"/>
     <Property name="size" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
       <Dimension value="[400, 600]"/>
     </Property>
@@ -277,7 +278,7 @@
                 <StringItem index="0" value="Seleccione una opci&#xf3;n"/>
                 <StringItem index="1" value="Normal"/>
                 <StringItem index="2" value="Suit"/>
-                <StringItem index="3" value="Duplex"/>
+                <StringItem index="3" value="D&#xfa;plex"/>
               </StringArray>
             </Property>
           </Properties>

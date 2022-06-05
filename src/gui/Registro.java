@@ -8,20 +8,30 @@ import java.sql.*;
 import libreriatrabajoprog.Libreria;
 
 public class Registro extends javax.swing.JFrame {
+    
+    // Clase Registro, que sirve para registrar reservas tanto en la tabla como en la base de datos, extiende de JFrame por que usamos GUI
 
-    PreparedStatement ps = null;
-    ResultSet rs;
+    PreparedStatement ps = null; //inicializamos la variale ps, usada mas adelate a la hora de conectar con la base de datos
 
+    //metodo para ejecutar la interfaz
     public static void registro(ArrayList<Cliente> reservas) {
+        //le damos a este metodo el arraylist reservas de tipo cliete para que este se lo de al contructor
         java.awt.EventQueue.invokeLater(() -> {
-            new Registro(reservas).setVisible(true);
+            new Registro(reservas).setVisible(true);//permite que sea visible
         });
     }
-
+    
+    //constructor de la interfaz grafica
     public Registro(ArrayList<Cliente> reservas) {
-        super("REGISTRO");
-        initComponents();
+        super("REGISTRO"); //mensaje de la parte superior de la ventana
+        initComponents(); //Composicion de la interfaz grafica
+        super.setLocationRelativeTo(null); //coloca la ventana en el centro de la pantalla
+        
+        //evento de boton de registro
         registrarReservaButton.addActionListener((java.awt.event.ActionEvent evt) -> {
+            
+            //recogemos en unas variables los datos introducidos en cada elemento de la GUI
+            
             String dni = textFieldDNI.getText();
             String nombre = textFieldNombre.getText();
             int telefono = Integer.parseInt(textFieldTelefono.getText());
@@ -31,6 +41,7 @@ public class Registro extends javax.swing.JFrame {
             String tipoHabtacion = comboBoxTHab.getSelectedItem().toString();
             String tipoCamas = comboBoxTCamas.getSelectedItem().toString();
 
+            //las variables de los radioButton tienen que ser asignadas mediante condicionales
             String vip = null;
             if (VipNone.isSelected()) {
                 vip = null;
@@ -48,12 +59,11 @@ public class Registro extends javax.swing.JFrame {
                 garaje = "No";
             }
 
-            Writing write = new Writing();
-            write.escribirReservas(reservas, dni, nombre, telefono, direccion, correo, numeroHabitacion, tipoHabtacion, tipoCamas, vip, garaje);
-            insertarBD();
+            Writing write = new Writing(); //inicializamos un objeto de tipo writing
+            write.escribirReservas(reservas, dni, nombre, telefono, direccion, correo, numeroHabitacion, tipoHabtacion, tipoCamas, vip, garaje); //llamamos al metodo esceribir reservas, proporcionandole todos los datos recogidos
+            insertarBD(); //llamamos al metodo nsertarBD que introduce la nueva reserva en la base de datos
 
-            JOptionPane.showMessageDialog(null, "¡Cliente registrado correctamente!");
-            this.dispose();
+            JOptionPane.showMessageDialog(null, "¡Cliente registrado correctamente!");//mensaje de confirmacion
         });
     }
 
@@ -93,6 +103,7 @@ public class Registro extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
         setSize(new java.awt.Dimension(400, 600));
 
         panel2.setPreferredSize(new java.awt.Dimension(400, 600));
@@ -120,7 +131,7 @@ public class Registro extends javax.swing.JFrame {
 
         labelTHab.setText("Tipo de habitación:");
 
-        comboBoxTHab.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione una opción", "Normal", "Suit", "Duplex" }));
+        comboBoxTHab.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione una opción", "Normal", "Suit", "Dúplex" }));
 
         comboBoxTCamas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione una opción", "Individual", "Doble", "Matrimonio", "Triple", "Cama de agua" }));
 
@@ -315,17 +326,18 @@ public class Registro extends javax.swing.JFrame {
     private javax.swing.JTextField textFieldTelefono;
     // End of variables declaration//GEN-END:variables
 
+    //método que reinicia los elementos, donde se introduce los datos, a su estado inicial
     private void limpiarCajasRegistro() {
 
-        //metodo para limpiar las cajas de texto
+        
         textFieldDNI.setText("");
         textFieldNombre.setText("");
         textFieldTelefono.setText("");
         textFieldDireccion.setText("");
         textFieldCorreo.setText("");
         textFieldNHabitacion.setText("");
-        comboBoxTHab.setSelectedIndex(1);
-        comboBoxTCamas.setSelectedIndex(1);
+        comboBoxTHab.setSelectedIndex(0);
+        comboBoxTCamas.setSelectedIndex(0);
         VipNone.setSelected(true);
         VipSi.setSelected(false);
         VipNo.setSelected(false);
@@ -333,16 +345,18 @@ public class Registro extends javax.swing.JFrame {
         GarajeSi.setSelected(false);
         GarajeNo.setSelected(false);
     }
-
+    
+    //metodo para realizar la insercion en la base de datos
     private void insertarBD() {
 
-        Connection con = null;
+        Connection con = null; //inicaliza la conexion con la BD
         try {
 
             //Conexion Base de Datos   
-            con = Libreria.establecerConexionBD();
-
+            con = Libreria.establecerConexionBD(); //establece la conexion con la base de datos
+            //instruccion de la inserción de la reserva en la base de datos
             ps = (PreparedStatement) con.prepareStatement("INSERT INTO reservas(dni,nombre,telefono,direccion,correoElectronico,numeroHabitacion,tipoHabitacion,tipoCamas,vip,garaje) VALUES(?,?,?,?,?,?,?,?,?,?)");
+            //le proporcionamos los valores a la instruccion
             ps.setString(1, textFieldDNI.getText());
             ps.setString(2, textFieldNombre.getText());
             ps.setInt(3, Integer.valueOf(textFieldTelefono.getText()));
@@ -373,15 +387,14 @@ public class Registro extends javax.swing.JFrame {
 
             }
 
-            ps.execute();
+            ps.execute(); //ejecutamos la instruccion
 
-            //tabla
-            JOptionPane.showMessageDialog(null, "Inserción aceptada");
-            limpiarCajasRegistro();
-            con.close();
+            
+            limpiarCajasRegistro();//llamamos al metodo que reestablece los elementos a su estado original
+            con.close(); //cerramos la conexion
         } catch (SQLException e) {
             System.out.println(e);
-            JOptionPane.showMessageDialog(null, "La inserción fue rechazada");
+            JOptionPane.showMessageDialog(null, "La inserción fue rechazada");//mensaje de rechazo
         }
 
     }
