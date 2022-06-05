@@ -11,12 +11,11 @@ import LoginLogout.Menu_Login;
  * @author David
  */
 public class Main {
-
-    /**
-     * @param args the command line arguments
-     */
+// Clase main, que ejecuta el menu de Login.
+    
+    
     public static void main(String[] args) {
-       Menu_Login.login();
+       Menu_Login.login(); //Metodo Login, de la clase Menu_Login
     }
     
 }
