@@ -1,15 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
- */
 package Aplicacion;
 
 import LoginLogout.Menu_Login;
 
-/**
- *
- * @author David
- */
 public class Main {
 // Clase main, que ejecuta el menu de Login.
     
