@@ -1,13 +1,13 @@
 REGISTRO DE TODOS LOS CLIENTES: MEDIDA CONTRA EL COVID-19
 ──────────────────────────────────────────────────────
-⚫ DNI --> 234525235J
-⚫ Nombre --> Marcos
-⚫ Telefono --> 236235
-⚫ Dirección --> hgfohweilfwe
-⚫ Email --> wweouf@gmail.com
-⚫ Numero de Habitación --> 345
+⚫ DNI --> 2352565K
+⚫ Nombre --> Jose Antonio
+⚫ Telefono --> 346367537
+⚫ Dirección --> Av. Roman
+⚫ Email --> lele@gmail.com
+⚫ Numero de Habitación --> 3
 ⚫ Tipo de Habitación --> Duplex
-⚫ Tipo de Camas --> Matrimonio
-⚫ V.I.P. --> True
-⚫ Garaje --> True
+⚫ Tipo de Camas --> Cama de agua
+⚫ V.I.P. --> Si
+⚫ Garaje --> No
 ──────────────────────────────────────────────────────
