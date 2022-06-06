@@ -10,7 +10,7 @@ public class EliminarReserva extends javax.swing.JFrame {
     // Clase ElminarReserva, que sirve para eliminar ua reserva, extiende de JFrame por que usamos GUI
 
     PreparedStatement ps = null; //inicializamos la variale ps, usada mas adelate a la hora de conectar con la base de datos
-    DefaultTableModel modelo;  //inicializamos la variale modelo, usada mas adelate para trabajar con la tabla de datos
+  DefaultTableModel modelo;  //inicializamos la variale modelo, usada mas adelate para trabajar con la tabla de datos
 
     //constructor de la iterfaz grafica
     public EliminarReserva() {
@@ -100,7 +100,7 @@ public class EliminarReserva extends javax.swing.JFrame {
 
                 //conexion base de datos  
                 
-                con = Libreria.getInstance().establecerConexionBD(); //establecemos la conexion con la BD
+                con = Libreria.establecerConexionBD(); //establecemos la conexion con la BD
 
                 int fila = tablaDatos.getSelectedRow(); //recogemos en una variable int la fila que hemos seleccionado para su eliminacion
                 String codigo = tablaDatos.getValueAt(fila, 0).toString(); //recogemos en una variable de tipo String el dato de la columna 0 y de la fila que hayamos seleccionado, es decir, el DNI.
@@ -110,7 +110,8 @@ public class EliminarReserva extends javax.swing.JFrame {
                 ps.execute();//ejecutamos la instruccion
 
                 //tabla
-                
+         
+                modelo = (DefaultTableModel)tablaDatos.getModel() ;
                 modelo.removeRow(fila); //eliminamos la fila seleccionada de la tabla a tiempo real
 
                 JOptionPane.showMessageDialog(null, "¡Producto Eliminado!"); //mensaje de confirmacion

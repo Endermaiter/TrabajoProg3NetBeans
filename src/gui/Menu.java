@@ -76,7 +76,7 @@ public class Menu extends javax.swing.JFrame {
             }
         });
         panel1.add(logOutButton);
-        logOutButton.setBounds(990, 20, 167, 68);
+        logOutButton.setBounds(990, 20, 180, 68);
 
         salirButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/salir.png"))); // NOI18N
         salirButton.setText("Salir");
@@ -86,7 +86,7 @@ public class Menu extends javax.swing.JFrame {
             }
         });
         panel1.add(salirButton);
-        salirButton.setBounds(1190, 20, 145, 68);
+        salirButton.setBounds(1200, 20, 145, 68);
 
         modificarReservaButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/modificarReserva.png"))); // NOI18N
         modificarReservaButton.setText("Modificar Reserva");
@@ -140,7 +140,7 @@ public class Menu extends javax.swing.JFrame {
     //evento del boton mostrarReserva
     private void mostrarReservasButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mostrarReservasButtonActionPerformed
         //ArrayMethods.mostrarReservas(listadoReservas);
-        MostrarReservas.mostrarReservas(); //llamada del metodo correspondiente que contiene la GUI
+        MostrarReservas.mostrarReservas(listadoReservas); //llamada del metodo correspondiente que contiene la GUI
     }//GEN-LAST:event_mostrarReservasButtonActionPerformed
     //evento del boton salir
     private void salirButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirButtonActionPerformed

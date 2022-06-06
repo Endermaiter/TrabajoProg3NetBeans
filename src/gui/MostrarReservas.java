@@ -1,7 +1,9 @@
 package gui;
 
+import clases.Cliente;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.RowFilter;
 import javax.swing.table.TableRowSorter;
@@ -14,7 +16,7 @@ public class MostrarReservas extends javax.swing.JFrame {
     
     DefaultTableModel modelo; //inicializamos la variale modelo, usada mas adelate para trabajar con la tabla de datos 
     TableRowSorter trs; //inicializamos la variale trs, usada mas adelate en el evento de la barra de búsqueda
-
+  ArrayList<Cliente> listadoReservas = new ArrayList<>();
     //constructor de la interfaz grafica
     public MostrarReservas() {
         initComponents(); //Composicion de la interfaz grafica
@@ -115,7 +117,7 @@ public class MostrarReservas extends javax.swing.JFrame {
     }//GEN-LAST:event_txtBuscarKeyTyped
 
     //metodo para ejecutar la interfaz
-    public static void mostrarReservas() {
+    public static void mostrarReservas(ArrayList<Cliente>listadoReservas) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.

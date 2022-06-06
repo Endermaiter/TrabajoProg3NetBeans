@@ -282,7 +282,7 @@ public class ModificarReservas extends javax.swing.JFrame {
 
             //BASE DE DATOS
             
-            con = Libreria.getInstance().establecerConexionBD(); //establecemos la conexion con la BD
+            con = Libreria.establecerConexionBD(); //establecemos la conexion con la BD
             //Le damos la instruccion de actualizar toda una fila. Dicho de otra forma, la sobreescribimos con los datos que hayamos cambiado en la interfaz.
             ps = (PreparedStatement) con.prepareStatement("UPDATE reservas SET dni=?,nombre=?,telefono=?, direccion=?,correoElectronico=?,numeroHabitacion=?,tipoHabitacion=?,tipoCamas=?, vip=?,garaje=? WHERE dni=?");
            //le damos a la instruccion sus respectivos valores sacados de los datos que hemos actualizado en nuestra interfaz grafica.
@@ -436,6 +436,7 @@ public class ModificarReservas extends javax.swing.JFrame {
                 }
 
             }
+             con.close(); //cierre de la conexion con la base de datos
         } catch (SQLException ex) {
             System.out.println(ex); //mensaje de error(SQL)
         }
