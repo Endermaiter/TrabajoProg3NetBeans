@@ -106,11 +106,11 @@ public class MostrarReservas extends javax.swing.JFrame {
     private void txtBuscarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyTyped
         txtBuscar.addKeyListener(new KeyAdapter() { //creamos un nuevo Listener
             @Override
-            public void keyReleased(KeyEvent ke) { //metodo que se ejecuta cada vez que se suelta una tecla
+            public void keyReleased(final KeyEvent ke) { //metodo que se ejecuta cada vez que se suelta una tecla
                 trs.setRowFilter(RowFilter.regexFilter(txtBuscar.getText(), 0, 1, 2, 3, 4, 5, 6, 7, 8, 9)); //filtra las filas segun lo que escribamos dentro del textField. En este caso funciona con todas las columnas (0-9)
             }
         });
-        trs = new TableRowSorter(modelo); //le da el modelo de la tabla a la nueva tabla generada
+        trs = new TableRowSorter(tablaDatos.getModel()); //le da el modelo de la tabla a la nueva tabla generada
         tablaDatos.setRowSorter(trs); //convierte la tabla segun el filtro que le hemos dado
     }//GEN-LAST:event_txtBuscarKeyTyped
 
