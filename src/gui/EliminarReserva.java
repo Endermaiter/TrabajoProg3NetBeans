@@ -100,7 +100,7 @@ public class EliminarReserva extends javax.swing.JFrame {
 
                 //conexion base de datos  
                 
-                con = Libreria.establecerConexionBD(); //establecemos la conexion con la BD
+                con = Libreria.getInstance().establecerConexionBD(); //establecemos la conexion con la BD
 
                 int fila = tablaDatos.getSelectedRow(); //recogemos en una variable int la fila que hemos seleccionado para su eliminacion
                 String codigo = tablaDatos.getValueAt(fila, 0).toString(); //recogemos en una variable de tipo String el dato de la columna 0 y de la fila que hayamos seleccionado, es decir, el DNI.

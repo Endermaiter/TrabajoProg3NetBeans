@@ -27,7 +27,7 @@ public class Metodos_sql {
         //Instruccion de la insercion en la base de datos
         String insert = "INSERT INTO usuarios(nombre,apellidos,correo,contraseña) VALUES(?,?,?,?)";
         
-        conexion = Libreria.establecerConexionBD(); // Establece la coneion con la base de datos
+        conexion = Libreria.getInstance().establecerConexionBD(); // Establece la coneion con la base de datos
         try {
             sentencia_preparada = (PreparedStatement) conexion.prepareStatement(insert); // Enviamos la instruccion
             //le proporcionamos los datos a la instruccion.
@@ -51,7 +51,7 @@ public class Metodos_sql {
         String busquedaUsuario = null; // Inicializacion del String de comprobacion
         Connection conexion = null;  //Inicilizacion de la conexion
         try{
-            conexion = Libreria.establecerConexionBD();  //Establece la coneion en la ase de datos
+            conexion = Libreria.getInstance().establecerConexionBD();  //Establece la coneion en la ase de datos
             //Instruccion de seleccionar una persona segun correo y contraseña.
             String buscarUsuario = ("SELECT nombre, correo, contraseña FROM usuarios WHERE correo ='"+correo+"' && contraseña = '"+contraseña+"'");
             

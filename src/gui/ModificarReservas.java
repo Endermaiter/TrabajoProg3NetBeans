@@ -282,7 +282,7 @@ public class ModificarReservas extends javax.swing.JFrame {
 
             //BASE DE DATOS
             
-            con = Libreria.establecerConexionBD(); //establecemos la conexion con la BD
+            con = Libreria.getInstance().establecerConexionBD(); //establecemos la conexion con la BD
             //Le damos la instruccion de actualizar toda una fila. Dicho de otra forma, la sobreescribimos con los datos que hayamos cambiado en la interfaz.
             ps = (PreparedStatement) con.prepareStatement("UPDATE reservas SET dni=?,nombre=?,telefono=?, direccion=?,correoElectronico=?,numeroHabitacion=?,tipoHabitacion=?,tipoCamas=?, vip=?,garaje=? WHERE dni=?");
            //le damos a la instruccion sus respectivos valores sacados de los datos que hemos actualizado en nuestra interfaz grafica.
@@ -356,7 +356,7 @@ public class ModificarReservas extends javax.swing.JFrame {
 
         Connection con = null; //inicializamos la conexion con la BD
         try {
-            con = Libreria.establecerConexionBD(); //establecemos la conexion con la BD
+            con = Libreria.getInstance().establecerConexionBD(); //establecemos la conexion con la BD
             int fila = tablaDatos.getSelectedRow();  //recogemos en una variable int la fila que hemos seleccionado para su modificacon
             String codigo = tablaDatos.getValueAt(fila, 0).toString();  //recogemos en una variable de tipo String el dato de la columna 0 y de la fila que hayamos seleccionado, es decir, el DNI.
             //instruccion de la seleccion de la reserva en la base de datos

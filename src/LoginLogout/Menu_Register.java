@@ -1,6 +1,5 @@
 package LoginLogout;
 
-import LoginLogout.Metodos_sql;
 import javax.swing.JOptionPane;
 
 public class Menu_Register extends javax.swing.JFrame {

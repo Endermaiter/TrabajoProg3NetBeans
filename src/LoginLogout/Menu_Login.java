@@ -1,6 +1,5 @@
 package LoginLogout;
 
-import LoginLogout.Metodos_sql;
 import gui.Menu;
 import javax.swing.JOptionPane;
 

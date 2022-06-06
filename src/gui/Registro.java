@@ -353,7 +353,7 @@ public class Registro extends javax.swing.JFrame {
         try {
 
             //Conexion Base de Datos   
-            con = Libreria.establecerConexionBD(); //establece la conexion con la base de datos
+            con = Libreria.getInstance().establecerConexionBD(); //establece la conexion con la base de datos
             //instruccion de la inserción de la reserva en la base de datos
             ps = (PreparedStatement) con.prepareStatement("INSERT INTO reservas(dni,nombre,telefono,direccion,correoElectronico,numeroHabitacion,tipoHabitacion,tipoCamas,vip,garaje) VALUES(?,?,?,?,?,?,?,?,?,?)");
             //le proporcionamos los valores a la instruccion
