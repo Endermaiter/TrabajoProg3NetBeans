@@ -23,13 +23,11 @@ public class Metodos_sql {
     public int guardar(String nombre, String apellidos, String correo, String contraseña){
         // Le das al metodo los datos mediante parametros, para que los guarde en la base de datos. Devuelve un int que, mas adelante cuando se llame al metodo, se comrpueba.
         int resultado =0; //  Declaracion de una variable llamada resultado.
-        Connection conexion = null; //Inicilizacion de la conexion
         //Instruccion de la insercion en la base de datos
         String insert = "INSERT INTO usuarios(nombre,apellidos,correo,contraseña) VALUES(?,?,?,?)";
         
-        conexion = Libreria.establecerConexionBD(); // Establece la coneion con la base de datos
         try {
-            sentencia_preparada = (PreparedStatement) conexion.prepareStatement(insert); // Enviamos la instruccion
+            sentencia_preparada = (PreparedStatement) Libreria.getInstance().establecerConexionBD().prepareStatement(insert); // Enviamos la instruccion
             //le proporcionamos los datos a la instruccion.
             sentencia_preparada.setString(1, nombre);
             sentencia_preparada.setString(2, apellidos);
@@ -38,6 +36,7 @@ public class Metodos_sql {
             
             resultado = sentencia_preparada.executeUpdate(); // Ejecutamos la instruccion
             sentencia_preparada.close(); // Cerramos la conexion
+            Libreria.getInstance().establecerConexionBD().close();
         } catch (SQLException ex) {
             System.out.println(ex);
         }
@@ -49,20 +48,18 @@ public class Metodos_sql {
         // Le damos al metodo el correo y la contraseña para que compruebe si esta en la base de datos. 
         //Devuelve diferentes Strings segun si se encontro o no
         String busquedaUsuario = null; // Inicializacion del String de comprobacion
-        Connection conexion = null;  //Inicilizacion de la conexion
         try{
-            conexion = Libreria.establecerConexionBD();  //Establece la coneion en la ase de datos
             //Instruccion de seleccionar una persona segun correo y contraseña.
             String buscarUsuario = ("SELECT nombre, correo, contraseña FROM usuarios WHERE correo ='"+correo+"' && contraseña = '"+contraseña+"'");
             
-            sentencia_preparada = (PreparedStatement) conexion.prepareStatement(buscarUsuario); // Enviamos la instruccion
+            sentencia_preparada = (PreparedStatement) Libreria.getInstance().establecerConexionBD().prepareStatement(buscarUsuario); // Enviamos la instruccion
             resultado = sentencia_preparada.executeQuery(); //Ejecutamos la Instruccion
             if(resultado.next()){ //si encuentra un usuario entonces....
                 busquedaUsuario = "usuario encontrado";  //Asignamos "usuario encontrado" a busquedaUsuario
             }else{
                 busquedaUsuario = "usuario no encontrado"; //Asignamos  "usuario no encontrado" a busquedaUsuario
             }
-            conexion.close();// Cerramos conexion
+            Libreria.getInstance().establecerConexionBD().close();// Cerramos conexion
         }catch(Exception ex){
             System.out.println(ex);
         }

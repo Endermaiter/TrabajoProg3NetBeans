@@ -349,13 +349,13 @@ public class Registro extends javax.swing.JFrame {
     //metodo para realizar la insercion en la base de datos
     private void insertarBD() {
 
-        Connection con = null; //inicaliza la conexion con la BD
+      
         try {
 
             //Conexion Base de Datos   
-            con = Libreria.establecerConexionBD(); //establece la conexion con la base de datos
+            
             //instruccion de la inserción de la reserva en la base de datos
-            ps = (PreparedStatement) con.prepareStatement("INSERT INTO reservas(dni,nombre,telefono,direccion,correoElectronico,numeroHabitacion,tipoHabitacion,tipoCamas,vip,garaje) VALUES(?,?,?,?,?,?,?,?,?,?)");
+            ps = (PreparedStatement) Libreria.getInstance().establecerConexionBD().prepareStatement("INSERT INTO reservas(dni,nombre,telefono,direccion,correoElectronico,numeroHabitacion,tipoHabitacion,tipoCamas,vip,garaje) VALUES(?,?,?,?,?,?,?,?,?,?)");
             //le proporcionamos los valores a la instruccion
             ps.setString(1, textFieldDNI.getText());
             ps.setString(2, textFieldNombre.getText());
@@ -391,7 +391,7 @@ public class Registro extends javax.swing.JFrame {
 
             
             limpiarCajasRegistro();//llamamos al metodo que reestablece los elementos a su estado original
-            con.close(); //cerramos la conexion
+            Libreria.getInstance().establecerConexionBD().close(); //cerramos la conexion
         } catch (SQLException e) {
             System.out.println(e);
             JOptionPane.showMessageDialog(null, "La inserción fue rechazada");//mensaje de rechazo

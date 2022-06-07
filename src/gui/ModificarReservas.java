@@ -277,14 +277,14 @@ public class ModificarReservas extends javax.swing.JFrame {
 
     //evento del boton modificar
     private void botonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonModificarActionPerformed
-        Connection con = null; //inicializamos la conexion
+         
         try {
 
             //BASE DE DATOS
             
-            con = Libreria.establecerConexionBD(); //establecemos la conexion con la BD
+            
             //Le damos la instruccion de actualizar toda una fila. Dicho de otra forma, la sobreescribimos con los datos que hayamos cambiado en la interfaz.
-            ps = (PreparedStatement) con.prepareStatement("UPDATE reservas SET dni=?,nombre=?,telefono=?, direccion=?,correoElectronico=?,numeroHabitacion=?,tipoHabitacion=?,tipoCamas=?, vip=?,garaje=? WHERE dni=?");
+            ps = (PreparedStatement) Libreria.getInstance().establecerConexionBD().prepareStatement("UPDATE reservas SET dni=?,nombre=?,telefono=?, direccion=?,correoElectronico=?,numeroHabitacion=?,tipoHabitacion=?,tipoCamas=?, vip=?,garaje=? WHERE dni=?");
            //le damos a la instruccion sus respectivos valores sacados de los datos que hemos actualizado en nuestra interfaz grafica.
             ps.setString(1, textFieldDNI.getText());
             ps.setString(2, textFieldNombre.getText());
@@ -344,7 +344,7 @@ public class ModificarReservas extends javax.swing.JFrame {
 
             }
             JOptionPane.showMessageDialog(null, "¡Reserva Modificada!"); //mensaje de confirmacion
-
+            Libreria.getInstance().establecerConexionBD().close();
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Hubo un error al modificar la reserva, intentelo de nuevo"); //mensaje de error de tipo sql
             System.out.println(e);
@@ -354,13 +354,13 @@ public class ModificarReservas extends javax.swing.JFrame {
     //evento de raton que nos permitira colocar los datos de una reserva en sus repectivos elementos de interfaz grafica (comboBox, textField...etc) al seleccionar la fila
     private void tablaDatosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaDatosMouseClicked
 
-        Connection con = null; //inicializamos la conexion con la BD
+        
         try {
-            con = Libreria.getInstance().establecerConexionBD(); //establecemos la conexion con la BD
+            
             int fila = tablaDatos.getSelectedRow();  //recogemos en una variable int la fila que hemos seleccionado para su modificacon
             String codigo = tablaDatos.getValueAt(fila, 0).toString();  //recogemos en una variable de tipo String el dato de la columna 0 y de la fila que hayamos seleccionado, es decir, el DNI.
             //instruccion de la seleccion de la reserva en la base de datos
-            ps = (PreparedStatement) con.prepareStatement("SELECT dni,nombre,telefono,direccion,correoElectronico,numeroHabitacion,tipoHabitacion,tipoCamas, vip,garaje FROM reservas  WHERE dni=?");
+            ps = (PreparedStatement) Libreria.getInstance().establecerConexionBD().prepareStatement("SELECT dni,nombre,telefono,direccion,correoElectronico,numeroHabitacion,tipoHabitacion,tipoCamas, vip,garaje FROM reservas  WHERE dni=?");
             //le damos a la instruccion el dni de la fila que hemos seleccioado
             ps.setString(1, codigo);
             ResultSet rs = ps.executeQuery(); //ejecutamos la instruccion
@@ -436,7 +436,7 @@ public class ModificarReservas extends javax.swing.JFrame {
                 }
 
             }
-             con.close(); //cierre de la conexion con la base de datos
+             Libreria.getInstance().establecerConexionBD().close(); //cierre de la conexion con la base de datos
         } catch (SQLException ex) {
             System.out.println(ex); //mensaje de error(SQL)
         }
@@ -444,10 +444,8 @@ public class ModificarReservas extends javax.swing.JFrame {
     //metodo para ejecutar la interfaz
     public static void modificarReservas() {
 
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ModificarReservas().setVisible(true); //permite que sea visible
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new ModificarReservas().setVisible(true); //permite que sea visible
         });
     }
 

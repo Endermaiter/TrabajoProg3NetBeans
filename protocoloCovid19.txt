@@ -1,13 +1,13 @@
 REGISTRO DE TODOS LOS CLIENTES: MEDIDA CONTRA EL COVID-19
 ──────────────────────────────────────────────────────
-⚫ DNI --> 2352565K
-⚫ Nombre --> Jose Antonio
-⚫ Telefono --> 346367537
-⚫ Dirección --> Av. Roman
-⚫ Email --> lele@gmail.com
-⚫ Numero de Habitación --> 3
-⚫ Tipo de Habitación --> Duplex
-⚫ Tipo de Camas --> Cama de agua
+⚫ DNI --> dkadakwdla3
+⚫ Nombre --> amdadlada
+⚫ Telefono --> 21313123
+⚫ Dirección --> dadadd
+⚫ Email --> adaddad
+⚫ Numero de Habitación --> 45
+⚫ Tipo de Habitación --> Normal
+⚫ Tipo de Camas --> Triple
 ⚫ V.I.P. --> Si
-⚫ Garaje --> No
+⚫ Garaje --> Si
 ──────────────────────────────────────────────────────

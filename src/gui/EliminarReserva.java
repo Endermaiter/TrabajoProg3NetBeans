@@ -95,17 +95,15 @@ public class EliminarReserva extends javax.swing.JFrame {
     private void botoneliminarReservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botoneliminarReservaActionPerformed
         int opcion = JOptionPane.showConfirmDialog(null, "¿Está seguro de que desea eliminar la reserva?", "Confirmacion de eliminar", JOptionPane.YES_NO_OPTION); //confirmación de eliminacion de reserva
         if (opcion == JOptionPane.YES_OPTION) { //si la decision fue afirmativa entonces...
-            Connection con = null; //inicializamos la conexion con la BD
+            
             try {
 
                 //conexion base de datos  
                 
-                con = Libreria.establecerConexionBD(); //establecemos la conexion con la BD
-
                 int fila = tablaDatos.getSelectedRow(); //recogemos en una variable int la fila que hemos seleccionado para su eliminacion
                 String codigo = tablaDatos.getValueAt(fila, 0).toString(); //recogemos en una variable de tipo String el dato de la columna 0 y de la fila que hayamos seleccionado, es decir, el DNI.
 
-                ps = (PreparedStatement) con.prepareStatement("DELETE FROM reservas WHERE DNI=?"); //instruccion de la eliminacion de la reserva en la base de datos
+                ps = (PreparedStatement) Libreria.getInstance().establecerConexionBD().prepareStatement("DELETE FROM reservas WHERE DNI=?"); //instruccion de la eliminacion de la reserva en la base de datos
                 ps.setString(1, codigo); //le damos el dni previamente seleccionado a la instruccion 
                 ps.execute();//ejecutamos la instruccion
 
@@ -116,7 +114,7 @@ public class EliminarReserva extends javax.swing.JFrame {
 
                 JOptionPane.showMessageDialog(null, "¡Producto Eliminado!"); //mensaje de confirmacion
 
-                con.close(); //cierre de la conexion con la base de datos
+                Libreria.getInstance().establecerConexionBD().close(); //cierre de la conexion con la base de datos
             } catch (SQLException e) {
                 System.out.println(e);// mensanje de error de tipo SQL
             }
